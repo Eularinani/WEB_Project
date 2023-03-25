@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <title>Login</title>
+  <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="./javascripts/utils/verifications.js"></script>
+  <script src="./javascripts/requests/matchesRequests.js"></script>
+  <script src="./javascripts/requests/usersRequests.js"></script>
+  <script src="./javascripts/login.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Login</h1></header>
+    <div class="content-backgrund">
+      <div>
+     <!--<form action="javascript:login()" id="entrar">
+      <input type="text" autocomplete="username" placeholder="name" required />
+      <i class="fas fa-envelope iEmail"></i>
+      <input type="password" placeholder="Password" required />
+      <i class="fas fa-lock iPassword"></i>
+      <button type="submit">Sign in</button>
+      <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <a href="register.html"></a><button id="btnSignin">Sign upe</button></a>
+      </form> -->
+ 
+    <form action="javascript:login()" id="entrar">
+      <table>
+        <tr>
+          <!--<td>Name:</td>-->
+          <input type="text" autocomplete="username" placeholder="name" id="name">
+          <i class="fas fa-envelope iEmail"></i>
+        </tr>
+        <tr>
+         <!-- <td>Password:</td>-->
+          <input type="password" autocomplete="current-password" placeholder="Password" id="password">
+           <i class="fas fa-lock iPassword"></i>
+        </tr>
+      </table>
+      <p id="msg" class="warning"></p>
+      <!--<p><input type="submit" value="Login"></p>-->
+      <button type="submit" value="Login">Sign in</button>
+      <p><a href="register.html">Create a new account</a></p>
+    </form>
+    </div>
+</body>
+
+</html>

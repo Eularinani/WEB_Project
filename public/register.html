@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <script src="./javascripts/requests/usersRequests.js"></script>
+  <script src="./javascripts/register.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Register</h1>
+    </header>
+      <form action="javascript:register()">
+        <table>
+          <tr>
+            <input type="text" autocomplete="username"  placeholder="Name" name="name" id="name">
+          </tr>
+          <tr>
+            <input type="text" autocomplete="username"  placeholder="Email" name="email" id="email">
+        </tr>
+        <tr>
+          <tr>
+            <input type="password" autocomplete="new-password"  placeholder="Password" name="password"  id="password">
+          </tr>
+        </table>
+        <p id="msg" class="warning"></p>
+        <!--<p><input type="submit" value="Register"></p>-->
+        <button type="submit" value="Register">Register</button>
+        <p><a href="index.html">Login page</a></p>
+      </form>
+  </div>
+</body>
+
+</html>
