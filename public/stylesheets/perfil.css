@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;;
+}
+/*caixa onde tem o logo*/
+.logo {
+    max-width: 80%;
+}
+/*O proprio logo*/
+.logo img {
+    max-width: 20%;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    
+}
+.profile-img {
+    display: block;
+}
+/*codigo abaixo alterar fotografia*/
+#input-file {
+    display: none;
+  }
+  
+  #upload-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #upload-button:hover {
+    background-color: #3e8e41;
+  }

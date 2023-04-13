@@ -4,6 +4,7 @@
 create table appuser (
     usr_id serial,
     usr_name varchar(60) not null,
-    usr_pass varchar(200) not null, 
-    usr_token varchar(200),
+    usr_pass varchar(200) not null, 								
+    usr_email varchar NOT null UNIQUE,
+    usr_token varchar(200),						
     primary key (usr_id));

@@ -28,7 +28,7 @@ class User {
     export() {
         let user=new User();
         user.name = this.name;
-        /*user.email = this.email;*/
+        user.email = this.email;
         return user; 
     }
 
@@ -89,8 +89,9 @@ static async register(user) {
     static async checkLogin(user) {
         try {
             let dbResult =
-                await pool.query("Select * from appuser where usr_email=$1", [user.name]);
+                await pool.query("Select * from appuser where usr_email=$1", [user.email]);
             let dbUsers = dbResult.rows;
+            console.log (user);
             if (!dbUsers.length)
                 return { status: 401, result: { msg: "Wrong username or password!"}};
             let dbUser = dbUsers[0]; 

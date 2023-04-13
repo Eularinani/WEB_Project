@@ -56,9 +56,10 @@ router.post('/auth', async function (req, res, next) {
     try {
         console.log("Login user ");
         let user = new User();
-        user.name = req.body.username;
+        user.email = req.body.useremail;
         user.pass = req.body.password;
         let result = await User.checkLogin(user);
+        console.log(req.body);
         if (result.status != 200) {
             res.status(result.status).send(result.result);
             return;

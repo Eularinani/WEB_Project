@@ -23,7 +23,7 @@ async function requestRegister(user,email, pass) {
     }
 }
 
-async function requestLogin(name, pass) {
+async function requestLogin(email, pass) {
     try {
         const response = await fetch(`/api/users/auth`, 
         {
@@ -33,7 +33,7 @@ async function requestLogin(name, pass) {
             },
           method: "POST",
           body: JSON.stringify({
-              username: name,
+              useremail: email,
               password: pass
           })
         });

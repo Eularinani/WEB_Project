@@ -2,19 +2,38 @@
 
 <head>
   <title>Profile</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="./stylesheets/perfil.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/profile.js"></script>
-</head>  
+</head> 
 <body>
-  <header>  
-    <h2 ><span id="user">Hello ______</span>
-      <input type="button" value="Logout" onclick="logout()"> </h2>
-    <h1>Profile Page</h1></header>
-  <main>
-    <h2>No more information to show at this moment</h2>
-  </main>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+      </div>
+      <div class="icon-menu">
+          <input type="button" value="Logout" onclick="logout()"> </h2>
+      </div>
+    </header>
+    <div class="menu">
+      <nav class="navigation-menu">
+        <div class="profile">
+            <span class="profile-img">
+               <!-- <img src="./Images/53ca53ca-94d0-421f-b555-b3eac365bfc5.jpg" alt="Imagem de perfil">-->    
+            </span>
+            <span>
+              <h2 id="name"> </h2>
+              <h2 ><span id="user">______</span>
+                <p class="status">online</p>
+            </span>
+        </div>
+      </nav>
+    </div>
+    <div class="content">
+      <h1 class="title">Conteúdo</h1>
+    </div>
+  </div>
 </body>
-
 </html>

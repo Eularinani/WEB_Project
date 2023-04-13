@@ -60,7 +60,7 @@ button.game {
   }
   
   .container {
-    background-color: #e8c39e;
+    background-color: #C44E8A;
     padding: 6px;
     width: 350px;
     height: 450px;
@@ -75,7 +75,7 @@ button.game {
   
   form {
     position: absolute;
-    margin-top: -50px;
+    margin-top: 80px;
     transition: .5s;
     width: 300px;
     height: 400px;
@@ -116,7 +116,7 @@ button.game {
   }
   
   button[type="submit"] {
-    background:#f0ede7;
+    background: #15B0AB;
     color: #111111;
     border-radius: 30px;
     width: 100%;
@@ -160,5 +160,5 @@ button.game {
     top: 190px;
   }
   #logo{
-    height: 35%;
+    height: 23%;
   }
