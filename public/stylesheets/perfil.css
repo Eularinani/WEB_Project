@@ -2,23 +2,53 @@
     margin: 0;
     padding: 0;;
 }
+/*bt do menu*/
+ a {
+ color: #111111;
+    }
+
 /*caixa onde tem o logo*/
 .logo {
-    max-width: 80%;
+    max-width: 50%;
 }
 /*O proprio logo*/
 .logo img {
-    max-width: 20%;
+    max-width: 15%;
+    
 }
+.menu{
+    background: #7a5c3c;
+}
+/*cabeçario*/
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px;
+    background: #b08e6b;
+    border: 7px solid black;
     
 }
-.profile-img {
+.profile{
+    display: flex;
+    align-items: center;
+}
+/*mexendo a imagem perfil*/
+.profile-img{
+    width: 20%;
     display: block;
+    padding-top: 12px;
+    padding-left: 12px;
+}
+
+.profile-img img{
+    border-radius: 50%;
+    max-width: 100%;
+    padding-right: 10px;
+}
+
+.status{
+    text-transform: capitalize;
 }
 /*codigo abaixo alterar fotografia*/
 #input-file {
@@ -36,4 +66,22 @@ header {
   
   #upload-button:hover {
     background-color: #3e8e41;
+  }
+  
+
+  nav>a{
+    display: flex;
+    padding: 1%;
+    background-color: #7a5c3c;
+    color: #fff;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  nav.icon-menu{
+    display: flex;
+    justify-content: end;
+
   }

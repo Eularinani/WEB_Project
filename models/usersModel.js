@@ -10,12 +10,7 @@ function dbUserToUser(dbUser)  {
     user.email = dbUser.usr_email ;
     return user;
 }
-/* function cardFromDB(dbObj) {
-return new Card(dbObj.crd_id,dbObj.crd_name, 
-    dbObj.crd_img_url, dbObj.crd_lore, dbObj.crd_description,
-    dbObj.crd_level, dbObj.crd_cost, dbObj.crd_timeout,
-    dbObj.crd_max_usage, dbObj.crd_type);    
-}*/
+
 
 class User {
     constructor(id, name, email, pass, token) {
@@ -49,6 +44,23 @@ static async getById(id) {
     }  
 }
 /*
+//atualizar foto de perfil
+static async getById(id) {
+    try {
+        let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
+        let dbUsers = dbResult.rows;
+        if (!dbUsers.length) 
+            return { status: 404, result:{msg: "No user found for that id."} } ;
+        let dbUser = dbUsers[0];
+        return { status: 200, result: 
+            new User(dbUser.id,dbUser.usr_name,dbUser.usr_email,dbUser.usr_pass, dbUser.usr_token)} ;
+    } catch (err) {
+        console.log(err);
+        return { status: 500, result: err };
+    }  
+}
+
+//fornecer informçoes ao perfil
     static async getById(id) {
         try {
             let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
@@ -91,7 +103,6 @@ static async register(user) {
             let dbResult =
                 await pool.query("Select * from appuser where usr_email=$1", [user.email]);
             let dbUsers = dbResult.rows;
-            console.log (user);
             if (!dbUsers.length)
                 return { status: 401, result: { msg: "Wrong username or password!"}};
             let dbUser = dbUsers[0]; 

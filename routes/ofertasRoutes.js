@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Livro = require("../models/ofertasModel");
+const oferta = require("../models/ofertasModel");
 
 router.post('', async function (req, res, next) {
     try {
@@ -19,3 +19,4 @@ router.post('', async function (req, res, next) {
         res.status(500).send(err);
     }
 });
+module.exports = router;

@@ -128,11 +128,6 @@ button.game {
     cursor: pointer;
   }
   
-  .divCheck {
-    margin: 10px 0 0 5px;
-    width: 80%;
-    font-size: 13px;
-  }
   
   #entrar {
     left: 25px;

@@ -9,19 +9,22 @@
 </head> 
 <body>
   <div class="container">
-    <header class="header">
+    <header>
       <div class="logo">
         <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
       </div>
-      <div class="icon-menu">
-          <input type="button" value="Logout" onclick="logout()"> </h2>
-      </div>
+      <nav class="icon-menu">
+        <a onclick="inicio()"> Inicio"</a>
+        <a onclick="mensagem()">Perfil </a>
+        <a onclick="perfil()">Menssagens </a>
+        <a onclick="logout()">Logout </a>
+      </nav>
     </header>
     <div class="menu">
       <nav class="navigation-menu">
         <div class="profile">
             <span class="profile-img">
-               <!-- <img src="./Images/53ca53ca-94d0-421f-b555-b3eac365bfc5.jpg" alt="Imagem de perfil">-->    
+               <img src="./Images/53ca53ca-94d0-421f-b555-b3eac365bfc5.jpg" alt="Imagem de perfil">   
             </span>
             <span>
               <h2 id="name"> </h2>
@@ -29,6 +32,7 @@
                 <p class="status">online</p>
             </span>
         </div>
+        <a>Adicionar foto de Perfil</a>
       </nav>
     </div>
     <div class="content">

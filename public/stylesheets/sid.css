@@ -1,30 +1,24 @@
 
 /* CSS para a lista de livros */
-header {
-    bottom: 0;
-    color: #fff;
-    position: sticky;
-  }
-  #logo{
-    height: 25%;
-  }
-  
-  body > header img, body> header nav{
-    width: 5%;
-    min-width: 20%;
-    max-width: 15%;
+.logo {
+  max-width: 50%;
 }
-
-header{
-    display: flex;
-    background-color:#e8c39e;
-    padding: -5%; 
-  }
-header>nav{
-    gap:10%;
-    justify-content: space-between;
-    display: block;
-    padding-left: 50%;
+/*O proprio logo*/
+.logo img {
+  max-width: 15%;
+  
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #b08e6b;
+  border: 0000;
+  
+}
+.profile-img {
+  display: block;
 }
 
 #fundo {
@@ -47,6 +41,7 @@ header>nav{
     font-size: 70px;
     font-weight: bold;
   }
+
   a {
     display: flex;
     padding: 10px 40px;
@@ -63,20 +58,23 @@ header>nav{
   align-items: center;
 }
 
-input[type="text"] {
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  border-bottom: 2px solid #371818;
-  outline: none;
+#bts{
+  display: flex;
 }
 
 nav{
-  display: flex;
+ 
   flex-direction: row;
 }
 nav>a{
   display: flex;
+    padding: 1%;
+    background-color: #7a5c3c;
+    color: #fff;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+    margin: 10px;
 }
 button[type="submit"] {
   padding: 8px 16px;

@@ -18,8 +18,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const usersRouter = require("./routes/usersRoutes");
+const ofertasRouter = require("./routes/ofertasRoutes");
+const livrosRouter = require("./routes/livrosRoutes");
 
 app.use("/api/users",usersRouter);
+app.use("/api/ofertas",ofertasRouter);
+app.use("/api/livros",livrosRouter);
 
 // when we don't find anything
 app.use((req, res, next) => {
