@@ -114,7 +114,7 @@ add constraint troca_fk_Livro
 foreign key (Troca_Livro_id) references Livro(Livro_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-
+ -------o codigo a baixo tem um pouco de erro
 alter table Estado_Transacao
 add constraint Estado_Transacao_fk_transacao
 foreign key (Estado_Transacao_Trasancao_id) references transacao(Trasancao_id )

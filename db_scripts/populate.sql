@@ -21,10 +21,29 @@ INSERT INTO Autor (Autor_nome) VALUES ('Eddie Stern');
 INSERT INTO Autor (Autor_nome) VALUES ('AUDRE KIS LORDE');
 INSERT INTO Autor (Autor_nome) VALUES ('John Aueust');
 INSERT INTO Autor (Autor_nome) VALUES ('RADHA S.S.BEAS');
-
+INSERT INTO Autor (Autor_nome) VALUES ('Sebastião Salgado');
+INSERT INTO Autor (Autor_nome) VALUES ('Soylev');
+INSERT INTO Autor (Autor_nome) VALUES ('James Patterson');
 
 
 ALTER TABLE Livro
 DROP COLUMN livr_capa;
 ALTER TABLE Livro
 add COLUMN Livr_capa text(500);
+
+
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro2.jpg', '2', '2022-04-16');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro', 'foto_livro3.jpg', '3', '2022-04-17');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro4.jpg', '4', '2022-04-18');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES (‘Venda de livro', 'foto_livro5.jpg', ‘5’, '2022-02-15);
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro6.jpg', ‘6, '2022-10-17');
+
+
+
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('1', '1', '1');
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('2', '2', '2');
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('3', '3', '3');
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('4', '4', '4');
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('5', '5', '5');
+INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES (‘6’, ‘6’, ‘6’);
