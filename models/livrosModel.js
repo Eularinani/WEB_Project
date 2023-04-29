@@ -5,11 +5,11 @@ const saltRounds = 10;
 
 function dbLivroToLivro(dbLivro)  {
     let livro = new Livro();
-    livro.id = dbLivro.Livro_id;
+    livro.id = dbLivro.livro_id;
     livro.titulo = dbLivro.titulo;
-    livro.capa = dbLivro.capa;
-    livro.lancamento = dbLivro.Livro_lançamento;
-    livro.volume = dbLivro.Livro_volume;
+    livro.capa = dbLivro.livr_capa;
+    livro.lancamento = dbLivro.livro_lançamento;
+    livro.volume = dbLivro.livro_volume;
     return livro;
 }
 class Livro{
@@ -43,7 +43,7 @@ class Livro{
 
 static async getbooks() {
     try {
-        let dbResult = await pool.query("select titulo from livro");
+        let dbResult = await pool.query("select titulo, Livr_capa from livro");
         let dbbooks = dbResult.rows;
         let book = [];
         for (let dbbook of dbbooks) {
@@ -55,6 +55,7 @@ static async getbooks() {
         return {status: 500, result: {msg: "Something went wrong."}};
     }
 }
+
 
 
 

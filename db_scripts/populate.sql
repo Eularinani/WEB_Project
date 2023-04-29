@@ -29,7 +29,7 @@ INSERT INTO Autor (Autor_nome) VALUES ('James Patterson');
 ALTER TABLE Livro
 DROP COLUMN livr_capa;
 ALTER TABLE Livro
-add COLUMN Livr_capa text(500);
+add COLUMN oferta_user_id int;
 
 
 INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15');

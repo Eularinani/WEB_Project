@@ -5,26 +5,22 @@
     <title> Shop Lists </title>
     <link rel="stylesheet" href="./stylesheets/kevin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="javascripts/shoplists.js"></script>
+    
   
 </head>
 <body>
-    <header>
-        <h1>Buy and Exchange</h1>
-        <section>
-
-        </section>
-        <nav>
-          <imput>
-             
-              <a href="login.html"> Login</a>
-              <a href="sign up.html"> Sign Up </a>     
-             
-        </imput>
-        </imput>
-      </nav>
-    </header>
-   
+  <header>
+    <div class="logo">
+      <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+    </div>
+    <nav class="icon-menu">
+      <a onclick="inicio()"> Inicio</a>
+      <a onclick="mensagem()">Perfil </a>
+      <a onclick="perfil()">Menssagens </a>
+      <a onclick="logout()">Logout </a>
+    </nav>
+  </header>
+   <main>
     <form>
       <input type="text" placeholder="Pesquisar...">
       <button type="submit">Buscar</button>
@@ -102,6 +98,7 @@
         <p>€ 17,99</p>
       
       </div>
+    </main>
   </body>
 </html>
   

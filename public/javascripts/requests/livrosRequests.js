@@ -23,3 +23,17 @@ async function requestRegister(id,titulo,lancamento,volume) {
         return {err: err};
     }
 }
+
+async function getAllbooks(){
+    try {
+        const response = await fetch(`/api/livros/auth`);
+        var result = await response.json();
+        return { successful: response.status == 200,
+                 unauthenticated: response.status == 401,
+                 books: result};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}

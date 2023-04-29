@@ -79,4 +79,19 @@ router.post('/auth', async function (req, res, next) {
     }
 });
 
+router.post('auth', async function(req, res, next){
+    try {
+         // result has the user with the database id
+         user = result.result;
+         let user = new User;
+         // and save it on the database
+         user.foto = userfoto;
+         result = await User.savefoto(user);
+         res.status(200).send({msg: "Foto atualizada"});
+    } catch (error) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
 module.exports = router;

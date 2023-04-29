@@ -7,16 +7,18 @@ function dbUserToUser(dbUser)  {
     let user = new User();
     user.id = dbUser.usr_id;
     user.name = dbUser.usr_name;
+    user.foto = dbUser.usr_foto;
     user.email = dbUser.usr_email ;
     return user;
 }
 
 
 class User {
-    constructor(id, name, email, pass, token) {
+    constructor(id, name, email, foto,pass, token) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.foto = foto;
         this.pass = pass;
         this.token = token;
     }
@@ -28,8 +30,8 @@ class User {
     }
 
 
-
-static async getById(id) {
+//fornecer informçoes ao perfil
+static async getperfil(id) {
     try {
         let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
         let dbUsers = dbResult.rows;
@@ -37,23 +39,23 @@ static async getById(id) {
             return { status: 404, result:{msg: "No user found for that id."} } ;
         let dbUser = dbUsers[0];
         return { status: 200, result: 
-            new User(dbUser.id,dbUser.usr_name,dbUser.usr_email,dbUser.usr_pass, dbUser.usr_token)} ;
+            new User(dbUser.id,dbUser.usr_name,dbUser.usr_foto)} ;
     } catch (err) {
         console.log(err);
         return { status: 500, result: err };
     }  
 }
-/*
+
 //atualizar foto de perfil
-static async getById(id) {
+static async savefoto(id) {
     try {
-        let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
+        let dbResult = await pool.query(`Update appuser set usr_foto=$1 where usr_id = $2`,
+        [user.foto,id]);
         let dbUsers = dbResult.rows;
         if (!dbUsers.length) 
             return { status: 404, result:{msg: "No user found for that id."} } ;
-        let dbUser = dbUsers[0];
-        return { status: 200, result: 
-            new User(dbUser.id,dbUser.usr_name,dbUser.usr_email,dbUser.usr_pass, dbUser.usr_token)} ;
+        let user = dbUserToUser (dbUsers[0]);
+        return { status: 200, result:  user} ;
     } catch (err) {
         console.log(err);
         return { status: 500, result: err };
@@ -75,7 +77,7 @@ static async getById(id) {
              return { status: 500, result: err };
         }  
     }
-*/
+
 
 static async register(user) {
     try {

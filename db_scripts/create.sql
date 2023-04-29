@@ -20,6 +20,7 @@ create table Oferta (
     Oferta_Dia date not null,
 	oferta_Livro_id int,
     Oferta_contaP int,
+    oferta_user_id int,
     primary key (Oferta_id)
 );
 
@@ -43,6 +44,7 @@ create table Estado (
 create table Transacao (
     Trasancao_id SERIAL not null,
     Transacao_nome VARCHAR(20) not null,
+    
     Transacao_Usuario_id int not null,
 	Transacao_Troca_id int not null,
 	Transacao_Oferta_id int not null,
@@ -104,6 +106,11 @@ add constraint Oferta_fk_Livro
 foreign key (oferta_Livro_id) references Livro(Livro_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+alter table oferta
+add constraint Oferta_fk_appuser
+foreign key (oferta_user_id) references appuser(user_id)
+ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 alter table troca 
 add constraint troca_fk_oferta
 foreign key (Troca_oferta_id) references oferta(oferta_id)
@@ -134,3 +141,34 @@ alter table locais
 add constraint                             <------- Falta os locais
 foreign key
 ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
+
+
+
+
+
+
+CREATE TABLE LocailP (
+    id serial PRIMARY KEY,
+    geom geography(Point, 4326),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+);
+CREATE TABLE Tranzacao (
+    id serial PRIMARY KEY,
+    name TEXT,
+    area POLYGON,
+    poi_id INTEGER REFERENCES poi(id),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+CREATE TABLE Local_transacao(
+    id serial PRIMARY KEY,
+    university_id integer REFERENCES universities(id),
+    school_id integer REFERENCES schools(id),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);

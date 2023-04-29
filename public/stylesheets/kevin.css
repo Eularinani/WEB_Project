@@ -1,10 +1,23 @@
 
 /* CSS para a lista de livros */
-header h1 {
-    bottom: 0;
-    color: #fff;
-    position: sticky;
-  }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #b08e6b;
+  border: 0000;
+  
+}
+
+.logo {
+  max-width: 50%;
+}
+/*O proprio logo*/
+.logo img {
+  max-width: 25%;
+  
+}
   
 
 .book-list {
@@ -39,16 +52,21 @@ header h1 {
   font-size: 18px;
   margin: 0;
 }
-header{
-    display: flex;
-    background-color: rgb(70, 49, 49);
-    padding: 10px; 
-  }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #b08e6b;
+  border: 0000;
+  
+}
 header>nav{
     gap:10px;
     justify-content: space-between;
-    display: block;
+    display: flex;
     padding-left: 50%;
+    
 }
 
 #fundo {
@@ -72,14 +90,15 @@ header>nav{
     font-weight: bold;
   }
   a {
-    display: inline-block;
-    padding: 10px 40px;
-    left: 60%;
-    background-color: #371818;
+    display: flex;
+    padding: 1%;
+    background-color: #7a5c3c;
     color: #fff;
-    border-radius: 20px;
-    text-decoration: none;
-    margin: 15px;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+    margin: 10px;
+    
   }
   
   form {

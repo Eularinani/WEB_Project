@@ -3,7 +3,7 @@ window.onload = async function () {
         let result = await checkAuthenticated(true);
         if (result.err) {  throw result.err; }
         window.user = user;
-        document.getElementById('user').textContent =window.user.name;
+        //document.getElementById('user').textContent =window.user.name;
      } catch (err) {
         console.log(err);
        // alert("Something went wrong!")

@@ -60,7 +60,37 @@ class Ofert{
     }
 
 
+    static async getEncomendaOFERTA(ofertaID) {
+        try {
+            let dbItems = await pool.query(
+                `select  Oferta_nome,Oferta_Dia,Titulo,Livr_capa,usr_name,Transacao_nome
+                FROM oferta
+                INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+                INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+                INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id
+                WHERE oferta_id = $1`,  [ofertaID]);
+            let dbItem = dbItems.rows;
+            if(!dbItem.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "id",
+                        msg: "Essa oferta já foi feita"
+                    }]
+                }; 
+            let ofertas;
+            ofertas.nome = dbItem.oferta_nome;
+            ofertas.dia = dbItem.oferta_dia;
+            ofertas.titulo = dbItem.titulo;
+            ofertas.capa = dbItem.livr_capa;
+            ofertas.nome_utilizador = dbItem.usr_name;
+            ofertas.nome_transacao = dbItem.transacao.nome;
+            return {status:200, result: ofertas};
 
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "Something went wrong."}};
+        }
+    }
 
 
     //lista de oferttas 
