@@ -1,7 +1,8 @@
+
 create table Livro (
     Livro_id SERIAL not null,
-    Titulo  VARCHAR(20) not null,							--4 algarismos, com 2 casas decimais
-    Livr_capa varchar(20) ,
+    Titulo  VARCHAR(200) not null,							--4 algarismos, com 2 casas decimais
+    Livr_capa varchar(300) ,
     Livro_Lançamento date not null,
     Livro_Volume int,
     primary key (Livro_id)
@@ -16,7 +17,7 @@ create table Autor (
 create table Oferta (
     Oferta_id SERIAL not null,
     Oferta_nome VARCHAR(20) not null,
-    Oferta_foto varchar(20),
+    Oferta_foto varchar(300),
     Oferta_Dia date not null,
 	oferta_Livro_id int,
     Oferta_contaP int,
@@ -27,7 +28,7 @@ create table Oferta (
 
 create table appuser (
     usr_id serial,
-    usr_foto varchar{100},
+    usr_foto varchar{300},
     usr_name varchar(60) not null,
     usr_pass varchar(200) not null, 								
     usr_email varchar NOT null UNIQUE,

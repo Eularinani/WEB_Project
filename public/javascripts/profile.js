@@ -50,3 +50,22 @@ async function perfil() {
        // alert("Something is not working");
     }
 }
+
+
+
+async function addItem() {
+    let slId = sessionStorage.getItem("shoplistId");
+    let prodId = parseInt(document.getElementById("prodId").value);
+    let quant = parseFloat(document.getElementById("quant").value);
+    let res = await requestAddItem(slId,prodId,quant,2);
+    if (res.successful) {
+        let container = document.getElementById("items");
+        // Incorrect, should not user innerHTML (TODO)
+        container.innerHTML = "";      
+        res = await requestUserShoplist(slId);
+        populateItems(res.shoplist.items);
+        alert("Inserted!");
+    } else {
+        alert("Error!");
+    }
+} 

@@ -33,11 +33,14 @@ class User {
 //fornecer informçoes ao perfil
 static async getperfil(id) {
     try {
-        let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
+        let dbResult = await pool.query('select  usr_name,usr_foto,Oferta_nome, Oferta_foto,Oferta_Dia,Titulo, Livr_capa,Livro_Volume FROM appuser'+
+        'INNER JOIN oferta on appuser.usr_id =oferta.oferta_user_id INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id where usr_id=2' , [id]);
         let dbUsers = dbResult.rows;
         if (!dbUsers.length) 
             return { status: 404, result:{msg: "No user found for that id."} } ;
         let dbUser = dbUsers[0];
+        let user = 
+        user.books = dbUser.book
         return { status: 200, result: 
             new User(dbUser.id,dbUser.usr_name,dbUser.usr_foto)} ;
     } catch (err) {

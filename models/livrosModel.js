@@ -40,10 +40,25 @@ class Livro{
     console.log(err);
     return { status: 500, result: err };
 }
-
+//TOdos livros só capa e titulo
 static async getbooks() {
     try {
         let dbResult = await pool.query("select titulo, Livr_capa from livro");
+        let dbbooks = dbResult.rows;
+        let book = [];
+        for (let dbbook of dbbooks) {
+            book.push(dbLivroToLivro(dbbook));
+        }
+        return {status:200, result: book};
+    } catch (err) {
+        console.log(err);
+        return {status: 500, result: {msg: "Something went wrong."}};
+    }
+}
+//buscando todos titulos 
+static async getTitulo() {
+    try {
+        let dbResult = await pool.query("select titulo from livro");
         let dbbooks = dbResult.rows;
         let book = [];
         for (let dbbook of dbbooks) {
