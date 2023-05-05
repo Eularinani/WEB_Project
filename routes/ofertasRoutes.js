@@ -19,4 +19,26 @@ router.post('', async function (req, res, next) {
         res.status(500).send(err);
     }
 });
+
+
+/*
+router.get('/auth/',auth.verifyAuth,  async function (req, res, next) {
+    try {
+        let result = oferta.getUserofertas(req.user.id);
+        if(result.status !== 200){
+            res.status(result.status).send(result.result);
+            return;
+        }
+        res.status(result.status).send(result.result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});*/
+
+
+
+
+
+
 module.exports = router;

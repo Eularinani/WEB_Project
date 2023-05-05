@@ -9,7 +9,18 @@ window.onload = async function () {
        // alert("Something went wrong!")
     }
 }
-
+window.onload = async function () {
+    try{
+        
+        //esse codigo traz as coisa atraves da funçao crida 
+        let res = await getAllbooks();
+        console.log(res);
+        if (!res.successful) throw {msg:"Something went wrong"};
+        populate(res.books.result);
+    } catch(err) {
+        console.log(err);
+    }
+}
 async function logout() {
     try {
         let result = await requestLogout();

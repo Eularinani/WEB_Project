@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+
+<html lang="pt">
 
 <head>
   <title>Profile</title>
   <link rel="stylesheet" href="./stylesheets/perfil.css">
+  <link rel="stylesheet" href="stylesheets/common.css">
   <script src="./javascripts/utils/verifications.js"></script>
   <script src="./javascripts/requests/usersRequests.js"></script>
   <script src="./javascripts/profile.js"></script>
@@ -10,15 +13,21 @@
 <body>
   <div class="container">
     <header>
-      <div class="logo">
-        <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+      <div class="container-grid">
+        <div class="logo">
+          <!--Os alts devem dar sigificado, em logos o alt deve ser o texto do próprio texto
+        Super importante para pessoas cegas por examplo -->
+          <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+        </div>
+        <nav class="icon-menu">
+          <!--Sem que se tem a tag "a" deve ter um href associada, senão não é keyboard accessible
+      -->
+          <a onclick="inicio()"> Inicio</a>
+          <a onclick="mensagem()">Perfil </a>
+          <a onclick="perfil()">Menssagens </a>
+          <a onclick="logout()">Logout </a>
+        </nav>
       </div>
-      <nav class="icon-menu">
-        <a onclick="inicio()"> Inicio"</a>
-        <a onclick="mensagem()">Perfil </a>
-        <a onclick="perfil()">Menssagens </a>
-        <a onclick="logout()">Logout </a>
-      </nav>
     </header>
     <section class="menu">
       <nav class="navigation-menu">

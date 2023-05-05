@@ -15,20 +15,31 @@ window.onload = async function () {
 function populate(books){
     let container = document.getElementById("livros");
     for (let book of books) {
-        let li = document.createElement("li");
+        let containerLivros = document.createElement("div");
+        containerLivros.classList.add('livros-card');
+        let cardLivros = document.createElement("div");
+        containerLivros.appendChild(cardLivros);
         let img = document.createElement("img");
         if (book.capa) {
             img.src = book.capa;
+            img.loading = "lazy";
+            img.alt = `Capa do livro ${book.titulo}`;
         } else {
             img.src = "/images/logo.png";
-        }   
-        li.appendChild(img);
-        let sec = document.createElement("section");
-        li.appendChild(sec);
+            img.loading = "lazy";
+            img.alt = `Capa do livro ${book.titulo}`;
+        }
+        cardLivros.appendChild(img);
+
         // For the section
-        let name = document.createElement("h3");
-        name.textContent = book.titulo;
-        sec.appendChild(name);
-        container.appendChild(li);
-    }let img = document.createElement("img");
+        let containerTitulo = document.createElement("div");
+        let nomeLivro = document.createElement("span");
+        containerTitulo.appendChild(nomeLivro);
+
+        nomeLivro.textContent = book.titulo;
+        cardLivros.appendChild(containerTitulo);
+
+        container.appendChild(containerLivros);
+    }
+
 }

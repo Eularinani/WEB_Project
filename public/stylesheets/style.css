@@ -10,7 +10,9 @@
 a {
   color: #111111;
 }
-
+#logo2{
+  height: 150px;
+}
 .warning {
   color: darkred;
   font-size: larger;

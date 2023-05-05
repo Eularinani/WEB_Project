@@ -1,9 +1,5 @@
-
-  
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <title> Shop Lists </title>
@@ -15,26 +11,45 @@
     <script src="./javascripts/profile.js"></script>
     <script src="./javascripts/home.js"></script>
     <link rel="stylesheet" href="./stylesheets/sid.css">
+    <link rel="stylesheet" href="stylesheets/common.css">
+    <link rel="stylesheet" href="stylesheets/card-livros.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
+
+
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+<header>
+    <div class="container-grid">
+        <div class="logo">
+            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+        </div>
+        <nav class="icon-menu">
+            <a onclick="inicio()"> Inicio</a>
+            <a onclick="mensagem()">Perfil </a>
+            <a onclick="perfil()">Menssagens </a>
+            <a onclick="logout()">Logout </a>
+        </nav>
     </div>
-    <nav class="icon-menu">
-      <a onclick="inicio()"> Inicio</a>
-      <a onclick="mensagem()">Perfil </a>
-      <a onclick="perfil()">Menssagens </a>
-      <a onclick="logout()">Logout </a>
-    </nav>
-  </header>
-  <main>
-    <section id = "livros">
-    </section>   
-  </main>
- 
+</header>
+<main>
+    <div>
+        <img class="banner-books"
+             src="https://web-static.wrike.com/blog/content/uploads/2014/07/iStock-587536358.jpg?av=95d3c7b72e8ec61ed2a871230b0aae5f"
+             alt="imagem de topo">
+        <span class="banner-books-text">A maneira mais fácil de comprar, vender e trocar livros!</span>
+
+    </div>
+    <section class="container-grid">
+        <div id="livros"></div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            Informação sobre o site pode ser adicionada aqui.
+        </div>
+    </footer>
+</main>
+
 </body>
 </html>
   

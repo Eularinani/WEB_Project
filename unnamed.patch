@@ -1,0 +1,831 @@
+Index: public/stylesheets/kevin.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/kevin.css b/public/stylesheets/kevin.css
+--- a/public/stylesheets/kevin.css	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/stylesheets/kevin.css	(date 1683155653836)
+@@ -1,24 +1,3 @@
+-
+-/* CSS para a lista de livros */
+-header {
+-  display: flex;
+-  align-items: center;
+-  justify-content: space-between;
+-  padding: 16px;
+-  background: #b08e6b;
+-  border: 0000;
+-  
+-}
+-
+-.logo {
+-  max-width: 50%;
+-}
+-/*O proprio logo*/
+-.logo img {
+-  max-width: 25%;
+-  
+-}
+-  
+ 
+ .book-list {
+   display: flex;
+@@ -52,22 +31,7 @@
+   font-size: 18px;
+   margin: 0;
+ }
+-header {
+-  display: flex;
+-  align-items: center;
+-  justify-content: space-between;
+-  padding: 16px;
+-  background: #b08e6b;
+-  border: 0000;
+-  
+-}
+-header>nav{
+-    gap:10px;
+-    justify-content: space-between;
+-    display: flex;
+-    padding-left: 50%;
+-    
+-}
++
+ 
+ #fundo {
+     width: 1454px;
+@@ -89,17 +53,7 @@
+     font-size: 70px;
+     font-weight: bold;
+   }
+-  a {
+-    display: flex;
+-    padding: 1%;
+-    background-color: #7a5c3c;
+-    color: #fff;
+-    border: none;
+-    border-radius: 20%;
+-    cursor: pointer;
+-    margin: 10px;
+-    
+-  }
++
+   
+   form {
+   display: flex;
+Index: node_modules/mime/.npmignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/node_modules/mime/.npmignore b/public/stylesheets/card-livros.css
+rename from node_modules/mime/.npmignore
+rename to public/stylesheets/card-livros.css
+--- a/node_modules/mime/.npmignore	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/stylesheets/card-livros.css	(date 1683239613482)
+@@ -1,0 +1,72 @@
++
++/*Estilos dos cartões dos livros, como penso que vão ter estes cartões em mais páginas, assim é só usar as mesmas classes no html em todos o lados, e é só importar este ficheiro onde tiverem mais cards dos livros */
++.livros-card{
++    display: flex;
++    flex: 0 0 auto;
++    width: 100%;
++    margin-bottom: 30px;
++}
++.livros-card>div>img {
++    max-width: 190px;
++    height: 300px;
++    flex-shrink: 0;
++    margin: auto;
++}
++.livros-card>div {
++    border: 1px solid #ccc;
++    padding: 20px;
++    margin: 20px 50px;
++    width: 100%;
++    display: flex;
++    flex-direction: column;
++    box-shadow: 2px 2px 8px 3px #0000001a;
++    background-color: white;
++}
++
++.livros-card>div>div>span {
++    margin-bottom: 10px;
++    margin-top: 20px;
++    font-size: 1.5rem;
++    font-weight: bold;
++}
++
++.livros-card>div>div {
++    height: 100%;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++}
++
++#livros {
++    display: flex;
++    flex-wrap: wrap;
++    padding-bottom: 50px;
++    margin-top: 30px;
++}
++
++@media (min-width: 576px) {
++
++    #livros {
++        padding: 0;
++    }
++
++    .livros-card{
++        width: 50%;
++        margin-bottom: 0;
++    }
++    .livros-card>div{
++        margin: 20px !important;
++    }
++}
++
++@media (min-width: 768px) {
++    .livros-card{
++        width: 33%;
++    }
++}
++
++@media (min-width: 1100px) {
++    .livros-card{
++        width: 25%;
++    }
++}
+Index: public/formulario.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/formulario.html b/public/formulario.html
+--- a/public/formulario.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/formulario.html	(date 1683213804686)
+@@ -1,23 +1,26 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="pt">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
++    <link rel="stylesheet" href="stylesheets/common.css">
+ </head>
+ <body>
+-    <header>
++<header>
++    <div class="container-grid">
+         <div class="logo">
+-          <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
++            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="icon-menu">
+-            <a href="inicio.html"> Inicio"</a>
+-            <a href="profile.html">Perfil </a>
+-            <a href="Home.html">Menssagens </a>
++            <a onclick="inicio()"> Inicio</a>
++            <a onclick="mensagem()">Perfil </a>
++            <a onclick="perfil()">Menssagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+-    </header>
++    </div>
++</header>
+ 
+     <section>
+       <h1>Adiciona Produto</h1>
+Index: public/Home.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/Home.html b/public/Home.html
+--- a/public/Home.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/Home.html	(date 1683240181857)
+@@ -1,9 +1,5 @@
+-
+-  
+-
+-
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="pt">
+ <head>
+     <meta charset="UTF-8">
+     <title> Shop Lists </title>
+@@ -15,26 +11,45 @@
+     <script src="./javascripts/profile.js"></script>
+     <script src="./javascripts/home.js"></script>
+     <link rel="stylesheet" href="./stylesheets/sid.css">
++    <link rel="stylesheet" href="stylesheets/common.css">
++    <link rel="stylesheet" href="stylesheets/card-livros.css">
++
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+-  
++
++
+ </head>
+ <body>
+-  <header>
+-    <div class="logo">
+-      <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+-    </div>
+-    <nav class="icon-menu">
+-      <a onclick="inicio()"> Inicio</a>
+-      <a onclick="mensagem()">Perfil </a>
+-      <a onclick="perfil()">Menssagens </a>
+-      <a onclick="logout()">Logout </a>
+-    </nav>
+-  </header>
+-  <main>
+-    <section id = "livros">
+-    </section>   
+-  </main>
+- 
++<header>
++    <div class="container-grid">
++        <div class="logo">
++            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
++        </div>
++        <nav class="icon-menu">
++            <a onclick="inicio()"> Inicio</a>
++            <a onclick="mensagem()">Perfil </a>
++            <a onclick="perfil()">Menssagens </a>
++            <a onclick="logout()">Logout </a>
++        </nav>
++    </div>
++</header>
++<main>
++    <div>
++        <img class="banner-books"
++             src="https://web-static.wrike.com/blog/content/uploads/2014/07/iStock-587536358.jpg?av=95d3c7b72e8ec61ed2a871230b0aae5f"
++             alt="imagem de topo">
++        <span class="banner-books-text">A maneira mais fácil de comprar, vender e trocar livros!</span>
++
++    </div>
++    <section class="container-grid">
++        <div id="livros"></div>
++    </section>
++    <footer>
++        <div class="footer-content">
++            Informação sobre o site pode ser adicionada aqui.
++        </div>
++    </footer>
++</main>
++
+ </body>
+ </html>
+   
+\ No newline at end of file
+Index: public/profile.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/profile.html b/public/profile.html
+--- a/public/profile.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/profile.html	(date 1683213804638)
+@@ -1,8 +1,11 @@
+-<html>
++<!DOCTYPE html>
++
++<html lang="pt">
+ 
+ <head>
+   <title>Profile</title>
+   <link rel="stylesheet" href="./stylesheets/perfil.css">
++  <link rel="stylesheet" href="stylesheets/common.css">
+   <script src="./javascripts/utils/verifications.js"></script>
+   <script src="./javascripts/requests/usersRequests.js"></script>
+   <script src="./javascripts/profile.js"></script>
+@@ -10,15 +13,21 @@
+ <body>
+   <div class="container">
+     <header>
+-      <div class="logo">
+-        <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
+-      </div>
+-      <nav class="icon-menu">
+-        <a onclick="inicio()"> Inicio"</a>
+-        <a onclick="mensagem()">Perfil </a>
+-        <a onclick="perfil()">Menssagens </a>
+-        <a onclick="logout()">Logout </a>
+-      </nav>
++      <div class="container-grid">
++        <div class="logo">
++          <!--Os alts devem dar sigificado, em logos o alt deve ser o texto do próprio texto
++        Super importante para pessoas cegas por examplo -->
++          <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
++        </div>
++        <nav class="icon-menu">
++          <!--Sem que se tem a tag "a" deve ter um href associada, senão não é keyboard accessible
++      -->
++          <a onclick="inicio()"> Inicio</a>
++          <a onclick="mensagem()">Perfil </a>
++          <a onclick="perfil()">Menssagens </a>
++          <a onclick="logout()">Logout </a>
++        </nav>
++      </div>
+     </header>
+     <section class="menu">
+       <nav class="navigation-menu">
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1683226475673)
++++ b/.gitignore	(date 1683226475673)
+@@ -0,0 +1,1 @@
++node_modules
+\ No newline at end of file
+Index: public/javascripts/home.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/home.js b/public/javascripts/home.js
+--- a/public/javascripts/home.js	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/javascripts/home.js	(date 1683213974670)
+@@ -15,20 +15,31 @@
+ function populate(books){
+     let container = document.getElementById("livros");
+     for (let book of books) {
+-        let li = document.createElement("li");
++        let containerLivros = document.createElement("div");
++        containerLivros.classList.add('livros-card');
++        let cardLivros = document.createElement("div");
++        containerLivros.appendChild(cardLivros);
+         let img = document.createElement("img");
+         if (book.capa) {
+             img.src = book.capa;
++            img.loading = "lazy";
++            img.alt = `Capa do livro ${book.titulo}`;
+         } else {
+             img.src = "/images/logo.png";
+-        }   
+-        li.appendChild(img);
+-        let sec = document.createElement("section");
+-        li.appendChild(sec);
++            img.loading = "lazy";
++            img.alt = `Capa do livro ${book.titulo}`;
++        }
++        cardLivros.appendChild(img);
++
+         // For the section
+-        let name = document.createElement("h3");
+-        name.textContent = book.titulo;
+-        sec.appendChild(name);
+-        container.appendChild(li);
+-    }let img = document.createElement("img");
++        let containerTitulo = document.createElement("div");
++        let nomeLivro = document.createElement("span");
++        containerTitulo.appendChild(nomeLivro);
++
++        nomeLivro.textContent = book.titulo;
++        cardLivros.appendChild(containerTitulo);
++
++        container.appendChild(containerLivros);
++    }
++
+ }
+\ No newline at end of file
+Index: public/inicio.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/inicio.html b/public/inicio.html
+--- a/public/inicio.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/inicio.html	(date 1683213804617)
+@@ -1,17 +1,19 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="pt">
+ <head>
+     <meta charset="UTF-8">
+     <title> Shop Lists </title>
+     <link rel="stylesheet" href="./stylesheets/kevin.css">
++    <link rel="stylesheet" href="stylesheets/common.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     
+   
+ </head>
+ <body>
+-  <header>
++<header>
++  <div class="container-grid">
+     <div class="logo">
+-      <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
++      <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+     </div>
+     <nav class="icon-menu">
+       <a onclick="inicio()"> Inicio</a>
+@@ -19,7 +21,8 @@
+       <a onclick="perfil()">Menssagens </a>
+       <a onclick="logout()">Logout </a>
+     </nav>
+-  </header>
++  </div>
++</header>
+    <main>
+     <form>
+       <input type="text" placeholder="Pesquisar...">
+Index: public/stylesheets/common.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/common.css b/public/stylesheets/common.css
+new file mode 100644
+--- /dev/null	(date 1683239791271)
++++ b/public/stylesheets/common.css	(date 1683239791271)
+@@ -0,0 +1,102 @@
++body {
++    margin: 0 !important;
++}
++
++
++/*Estilos do Header, assim se tiverem de alterar, só alteram num lugar, e não em todos os ficheiros CSS*/
++header {
++    display: flex;
++    align-items: center;
++    justify-content: space-between;
++    padding-right: 15px;
++    padding-left: 15px;
++    background: #b08e6b;
++    position: sticky;
++    top: 0;
++    z-index: 9999;
++}
++header>div {
++    display: flex;
++    align-items: center;
++    justify-content: space-between;
++    padding-right: 15px;
++    padding-left: 15px;
++    background: #b08e6b;
++}
++header>div>nav{
++    justify-content: space-between;
++    display: flex;
++    margin-right: 20px;
++    flex-wrap: nowrap; /* para manter todos os links na mesma linha visiveis. */
++}
++
++nav>a {
++    display: flex;
++    padding: 1%;
++    background-color: #7a5c3c;
++    color: #fff;
++    border: none;
++    border-radius: 20%;
++    cursor: pointer;
++    margin: 10px;
++}
++
++/*O proprio logo*/
++header>div>.logo img {
++    height: 70px;
++}
++
++
++/*Sugiro usarem este container para limitarem sempre a width do conteudo, para controlar as margens automativamente
++Como o bootstrap faz por exemplo */
++.container-grid {
++    width: 100%;
++    margin: auto;
++}
++
++
++@media (min-width: 576px) {
++    .container-grid {
++        max-width: 540px;
++    }
++}
++
++
++@media (min-width: 768px) {
++    .container-grid {
++        max-width: 720px;
++    }
++}
++
++
++@media (min-width: 892px) {
++    .container-grid {
++        max-width: 860px;
++    }
++}
++
++@media (min-width: 1100px) {
++    .container-grid {
++        max-width: 1040px;
++    }
++}
++
++@media (min-width: 1400px) {
++    .container-grid {
++        max-width: 1320px;
++    }
++}
++
++footer {
++    height: 500px;
++    margin-top: -250px;
++    width: 100%;
++    background-color: #b08e6b;
++}
++
++footer>.footer-content{
++    padding-top: 300px;
++    font-size: 3rem;
++    text-align: center;
++}
++
+Index: public/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/index.html b/public/index.html
+--- a/public/index.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/index.html	(date 1683207830037)
+@@ -1,9 +1,12 @@
+-<html>
++<!DOCTYPE html>
++
++<html lang="pt">
+ 
+ <head>
+   <title>Login</title>
+   <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="/stylesheets/style.css">
++  <link rel="stylesheet" href="/stylesheets/common.css">
+   <script src="./javascripts/utils/verifications.js"></script>
+   <script src="./javascripts/requests/matchesRequests.js"></script>
+   <script src="./javascripts/requests/usersRequests.js"></script>
+@@ -16,7 +19,7 @@
+       <h1</h1></header>
+     <div class="content-backgrund">
+       <div>
+-        <img id="logo" src="./Images/Logos-09.png" alt="logotipo">
++        <img id="logo" src="./Images/Logos-09.png" alt="Buy and change">
+  
+     <form action="javascript:login()" id="entrar">
+       <table>
+Index: public/stylesheets/sid.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/sid.css b/public/stylesheets/sid.css
+--- a/public/stylesheets/sid.css	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/stylesheets/sid.css	(date 1683240181798)
+@@ -1,58 +1,14 @@
+ 
+-/* CSS para a lista de livros */
+-.logo {
+-  max-width: 50%;
+-}
+-/*O proprio logo*/
+-.logo img {
+-  max-width: 15%;
+-  
+-}
+-header {
+-  display: flex;
+-  align-items: center;
+-  justify-content: space-between;
+-  padding: 16px;
+-  background: #b08e6b;
+-  border: 0000;
+-  
+-}
+ .profile-img {
+   display: block;
+ }
+ 
+-#fundo {
+-    width: 1454px;
+-    height: 500px;
+-  }
+-
+   #container {
+     position: relative;
+     width: 500px;
+     height: 300px;
+   }
+   
+-  #texto {
+-    position: absolute;
+-    top: 38%;
+-    left: 53%;
+-    transform: translate(-50%, -50%);
+-    color: #371818;
+-    font-size: 70px;
+-    font-weight: bold;
+-  }
+-
+-  a {
+-    display: flex;
+-    padding: 10px 40px;
+-    left: 60%;
+-    background-color: #371818;
+-    color: #fff;
+-    border-radius: 20px;
+-    text-decoration: none;
+-    margin: 15px;
+-  }
+-  
+   form {
+   display: flex;
+   align-items: center;
+@@ -62,20 +18,6 @@
+   display: flex;
+ }
+ 
+-nav{
+- 
+-  flex-direction: row;
+-}
+-nav>a{
+-  display: flex;
+-    padding: 1%;
+-    background-color: #7a5c3c;
+-    color: #fff;
+-    border: none;
+-    border-radius: 20%;
+-    cursor: pointer;
+-    margin: 10px;
+-}
+ button[type="submit"] {
+   padding: 8px 16px;
+   background-color: #F4E61A;
+@@ -85,12 +27,41 @@
+   cursor: pointer;
+ }
+ 
+-  
+- 
+-  
+-  
+-  
+-  
+-  
+-  
+-  
++.banner-books {
++  width: 100%;
++  height: 300px;
++  padding-top: 3px;
++}
++
++.banner-books-text {
++  color: #371818;
++  font-size: 2rem;
++  font-weight: bold;
++  position: absolute;
++  text-align: center;
++  padding-top: 20px;
++  width: 50%;
++  margin-left: auto;
++  margin-right: auto;
++  left: 0;
++  right: 0;
++}
++
++
++@media (min-width: 576px) {
++  .banner-books-text{
++    font-size: 2.5rem;
++    padding-top: 35px;
++  }
++  .banner-books {
++    height: 350px;
++  }
++}
++@media (min-width: 870px) {
++  .banner-books-text{
++    font-size: 3rem;
++  }
++  .banner-books {
++    height: 400px;
++  }
++}
+Index: public/fotoperfil.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/fotoperfil.html b/public/fotoperfil.html
+--- a/public/fotoperfil.html	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/fotoperfil.html	(date 1683213804665)
+@@ -1,24 +1,27 @@
+ <!DOCTYPE html>
+-<html lang="en">
++<html lang="pt">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="./stylesheets/perfil.css">
++    <link rel="stylesheet" href="./stylesheets/common.css">
+     <title>perfilfoto</title>
+ </head>
+ <body>
+-    <header>
++<header>
++    <div class="container-grid">
+         <div class="logo">
+-          <img id="logo2" src="./Images/Logos-09.png" alt="Logo" >
++            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="icon-menu">
+-            <a href="inicio.html"> Inicio"</a>
+-            <a href="profile.html">Perfil </a>
+-            <a href="Home.html">Menssagens </a>
++            <a onclick="inicio()"> Inicio</a>
++            <a onclick="mensagem()">Perfil </a>
++            <a onclick="perfil()">Menssagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+-      </header>
++    </div>
++</header>
+     <h1>Caregar Foto de perfil</h1>
+     <input type="file" id="input-file">
+     <button id="upload-button">Upload</button>
+Index: public/stylesheets/perfil.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/perfil.css b/public/stylesheets/perfil.css
+--- a/public/stylesheets/perfil.css	(revision ad413c1a8d6e6dc7f34e7dbf7f6c033c7eee8924)
++++ b/public/stylesheets/perfil.css	(date 1683155653823)
+@@ -1,34 +1,8 @@
+-*{
+-    margin: 0;
+-    padding: 0;;
+-}
+-/*bt do menu*/
+- a {
+- color: #111111;
+-    }
+ 
+-/*caixa onde tem o logo*/
+-.logo {
+-    max-width: 50%;
+-}
+-/*O proprio logo*/
+-.logo img {
+-    max-width: 15%;
+-    
+-}
+ .menu{
+     background: #7a5c3c;
+ }
+-/*cabeçario*/
+-header {
+-    display: flex;
+-    align-items: center;
+-    justify-content: space-between;
+-    padding: 16px;
+-    background: #b08e6b;
+-    border: 7px solid black;
+-    
+-}
++
+ .profile{
+     display: flex;
+     align-items: center;
+@@ -68,20 +42,3 @@
+     background-color: #3e8e41;
+   }
+   
+-
+-  nav>a{
+-    display: flex;
+-    padding: 1%;
+-    background-color: #7a5c3c;
+-    color: #fff;
+-    border: none;
+-    border-radius: 20%;
+-    cursor: pointer;
+-    margin: 10px;
+-  }
+-
+-  nav.icon-menu{
+-    display: flex;
+-    justify-content: end;
+-
+-  }
+\ No newline at end of file

@@ -1,56 +1,12 @@
 
-/* CSS para a lista de livros */
-.logo {
-  max-width: 50%;
-}
-/*O proprio logo*/
-.logo img {
-  max-width: 15%;
-  
-}
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
-  background: #b08e6b;
-  border: 0000;
-  
-}
 .profile-img {
   display: block;
 }
-
-#fundo {
-    width: 1454px;
-    height: 500px;
-  }
 
   #container {
     position: relative;
     width: 500px;
     height: 300px;
-  }
-  
-  #texto {
-    position: absolute;
-    top: 38%;
-    left: 53%;
-    transform: translate(-50%, -50%);
-    color: #371818;
-    font-size: 70px;
-    font-weight: bold;
-  }
-
-  a {
-    display: flex;
-    padding: 10px 40px;
-    left: 60%;
-    background-color: #371818;
-    color: #fff;
-    border-radius: 20px;
-    text-decoration: none;
-    margin: 15px;
   }
   
   form {
@@ -62,20 +18,6 @@ header {
   display: flex;
 }
 
-nav{
- 
-  flex-direction: row;
-}
-nav>a{
-  display: flex;
-    padding: 1%;
-    background-color: #7a5c3c;
-    color: #fff;
-    border: none;
-    border-radius: 20%;
-    cursor: pointer;
-    margin: 10px;
-}
 button[type="submit"] {
   padding: 8px 16px;
   background-color: #F4E61A;
@@ -85,12 +27,41 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-  
- 
-  
-  
-  
-  
-  
-  
-  
+.banner-books {
+  width: 100%;
+  height: 300px;
+  padding-top: 3px;
+}
+
+.banner-books-text {
+  color: #371818;
+  font-size: 2rem;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  padding-top: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+
+@media (min-width: 576px) {
+  .banner-books-text{
+    font-size: 2.5rem;
+    padding-top: 35px;
+  }
+  .banner-books {
+    height: 350px;
+  }
+}
+@media (min-width: 870px) {
+  .banner-books-text{
+    font-size: 3rem;
+  }
+  .banner-books {
+    height: 400px;
+  }
+}

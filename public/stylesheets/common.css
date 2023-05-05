@@ -1,0 +1,102 @@
+body {
+    margin: 0 !important;
+}
+
+
+/*Estilos do Header, assim se tiverem de alterar, só alteram num lugar, e não em todos os ficheiros CSS*/
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: #b08e6b;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+header>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-left: 15px;
+    background: #b08e6b;
+}
+header>div>nav{
+    justify-content: space-between;
+    display: flex;
+    margin-right: 20px;
+    flex-wrap: nowrap; /* para manter todos os links na mesma linha visiveis. */
+}
+
+nav>a {
+    display: flex;
+    padding: 1%;
+    background-color: #7a5c3c;
+    color: #fff;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+    margin: 10px;
+}
+
+/*O proprio logo*/
+header>div>.logo img {
+    height: 70px;
+}
+
+
+/*Sugiro usarem este container para limitarem sempre a width do conteudo, para controlar as margens automativamente
+Como o bootstrap faz por exemplo */
+.container-grid {
+    width: 100%;
+    margin: auto;
+}
+
+
+@media (min-width: 576px) {
+    .container-grid {
+        max-width: 540px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .container-grid {
+        max-width: 720px;
+    }
+}
+
+
+@media (min-width: 892px) {
+    .container-grid {
+        max-width: 860px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .container-grid {
+        max-width: 1040px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container-grid {
+        max-width: 1320px;
+    }
+}
+
+footer {
+    height: 500px;
+    margin-top: -250px;
+    width: 100%;
+    background-color: #b08e6b;
+}
+
+footer>.footer-content{
+    padding-top: 300px;
+    font-size: 3rem;
+    text-align: center;
+}
+
