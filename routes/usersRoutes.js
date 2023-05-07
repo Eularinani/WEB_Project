@@ -10,7 +10,7 @@ const tokenSize = 64;
 router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     try {
         console.log("Get authenticated user");
-        let result = await User.getUserofertas(req.user.id);
+        let result = await User.getById(req.user.id);
         if (result.status != 200) 
             res.status(result.status).send(result.result);
         let user = new User();
