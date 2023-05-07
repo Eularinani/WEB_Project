@@ -26,6 +26,7 @@ class User {
         let user=new User();
         user.name = this.name;
         user.email = this.email;
+        user.foto = this.foto
         return user; 
     }
 

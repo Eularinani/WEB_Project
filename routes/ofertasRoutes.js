@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const oferta = require("../models/ofertasModel");
+const auth = require("../middleware/auth");
 
 router.post('', async function (req, res, next) {
     try {
@@ -21,20 +22,19 @@ router.post('', async function (req, res, next) {
 });
 
 
-/*
-router.get('/auth/',auth.verifyAuth,  async function (req, res, next) {
+
+router.get('/auth/:id',auth.verifyAuth,  async function (req, res, next) {
     try {
-        let result = oferta.getUserofertas(req.user.id);
-        if(result.status !== 200){
+        let result = await oferta.getUserofertas(req.user.id);
+        if(result.status != 200){
             res.status(result.status).send(result.result);
-            return;
-        }
+            return;}
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
     }
-});*/
+});
 
 
 
