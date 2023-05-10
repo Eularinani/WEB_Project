@@ -5,12 +5,13 @@ const auth = require("../config/utils");
 
 function dbOfertaTooferta(dbOferta)  {
     let oferta = new Ofert();
-    oferta.id = dbOferta.Oferta_id;
-    oferta.nome = dbOferta.Oferta_nome;
-    oferta.dia = dbOferta.Oferta_Dia;
-    oferta.contra_p = dbOferta.Oferta_contaP;
-    oferta.user_id = dbOferta.Oferta_user_id;
-    oferta.livro_id = dbOferta.Oferta_livro_id;
+    oferta.id = dbOferta.oferta_id;
+    oferta.titulo = dbOferta.titulo;
+    oferta.dia = dbOferta.oferta_dia;
+    oferta.user_id = dbOferta.usr_id;
+    oferta.livro_id = dbOferta.livro_id;
+    oferta.imagem_livro = dbOferta.livr_capa;
+    oferta.nome_oferta = dbOferta.oferta_nome;
     return oferta;
 }
 
@@ -28,13 +29,14 @@ class Trans{
 }}
 
 class Ofert{
-        constructor(id,nome,dia,contra_p,user,livro){
+        constructor(id,titulo,dia,contra_p,user,livro, imagem, nome_oferta){
             this.id=id
-            this.name=nome
+            this.titulo=titulo
             this.dia=dia
-            this.contra_p=contra_p
             this.user_id=user
             this.livro_id=livro
+            this.imagem_livro = imagem
+            this.nome_oferta = nome_oferta
     }
     
     //add ofertas
@@ -63,33 +65,31 @@ class Ofert{
     static async getUserofertas(userId) {
         try {
             let dbResult = await pool.query(
-                'select Oferta_nome,Oferta_foto,Oferta_Dia, Titulo ,Livr_capa , Livro_Volume,Transacao_nome'+ 
-				'from oferta'+
-				'INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id'+
-				'INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id'+
-				'INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id'+
-				'WHERE oferta_user_id =1', [userId]);
-                let dbUser = dbResult.rows;
-                if(!dbItem.length)
-                    return {
-                        status: 400, result: [{
-                            location: "body", param: "id",
-                            msg: "Essa oferta já foi feita"
-                        }]
-                    }; 
-                let ofertas;
-                ofertas.nome = dbItem.oferta_nome;
-                ofertas.dia = dbItem.oferta_dia;
-                ofertas.titulo = dbItem.titulo;
-                ofertas.capa = dbItem.livr_capa;
-                ofertas.nome_utilizador = dbItem.usr_name;
-                ofertas.nome_transacao = dbItem.transacao.nome;
-                return {status:200, result: ofertas};
-    
-            } catch (err) {
-                console.log(err);
-                return {status: 500, result: {msg: "Something went wrong."}};
+                'SELECT Oferta_nome, Oferta_foto, Oferta_Dia, Titulo, Livr_capa, Livro_Volume, Transacao_nome, Livro_id, usr_id, oferta_id '+
+                'FROM oferta '+
+                'INNER JOIN livro ON oferta.oferta_livro_id = livro.livro_id '+
+                'INNER JOIN transacao ON oferta.oferta_id = transacao.Transacao_Oferta_id '+
+                'INNER JOIN appuser ON oferta.oferta_user_id = appuser.usr_id '+
+                'WHERE oferta.oferta_user_id = $1', [userId]);
+            let dbOfertas = dbResult.rows;
+            if(!dbOfertas || !dbOfertas.length)
+                return {
+                    status: 400, result: [{
+                        location: "body", param: "id",
+                        msg: "Essa oferta já foi feita"
+                    }]
+                };
+            let oferta = [];
+            for (let dbOferta of dbOfertas) {
+                oferta.push(dbOfertaTooferta(dbOferta));
             }
+
+            return {status:200, result: oferta};
+
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "Something went wrong."}};
+        }
     }
     
 

@@ -71,11 +71,11 @@ static async savefoto(id) {
         try {
             let dbResult = await pool.query("Select * from appuser where usr_id=$1", [id]);
             let dbUsers = dbResult.rows;
-            if (!dbUsers.length) 
+            if (!dbUsers.length)
                 return { status: 404, result:{msg: "No user found for that id."} } ;
             let dbUser = dbUsers[0];
             return { status: 200, result: 
-                new User(dbUser.id,dbUser.usr_name,dbUser.usr_pass, dbUser.usr_token)} ;
+                new User(dbUser.usr_id,dbUser.usr_name,dbUser.usr_pass, dbUser.usr_token)} ;
         } catch (err) {
             console.log(err);
              return { status: 500, result: err };

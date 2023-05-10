@@ -82,3 +82,18 @@ async function requestProfile() {
         return {err: err};
     }
 }
+async function requestOferta(user_id) {
+    try {
+        const response = await fetch(`/api/ofertas/auth/${user_id}`);
+        console.log("-------------------------------------------------------");
+        console.log("request Oferta", response);
+        var result = await response.json();
+        return { successful: response.status == 200,
+                 unauthenticated: response.status == 401,
+                 oferta: result};
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}

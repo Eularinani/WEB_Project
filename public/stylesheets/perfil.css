@@ -1,29 +1,4 @@
 
-.menu{
-    background: #7a5c3c;
-}
-
-.profile{
-    display: flex;
-    align-items: center;
-}
-/*mexendo a imagem perfil*/
-.profile-img{
-    width: 20%;
-    display: block;
-    padding-top: 12px;
-    padding-left: 12px;
-}
-
-.profile-img img{
-    border-radius: 50%;
-    max-width: 100%;
-    padding-right: 10px;
-}
-
-.status{
-    text-transform: capitalize;
-}
 /*codigo abaixo alterar fotografia*/
 #input-file {
     display: none;
@@ -41,4 +16,33 @@
   #upload-button:hover {
     background-color: #3e8e41;
   }
-  
+
+.profile-banner {
+    height: 350px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.profile-avatar-container{
+    margin-top: -130px;
+    background: aliceblue;
+    width: 150px;
+    border-radius: 50px;
+    position: relative;
+    z-index: 2;
+}
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.profile-name{
+    margin-top: -75px;
+    margin-left: 200px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+.profile-container-livros{
+    margin-top: 70px;
+}

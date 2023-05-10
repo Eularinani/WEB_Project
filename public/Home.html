@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title> Shop Lists </title>
     <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./stylesheets/perfil.css">
     <script src="./javascripts/utils/verifications.js"></script>
     <script src="./javascripts/requests/usersRequests.js"></script>
@@ -14,17 +15,19 @@
     <link rel="stylesheet" href="stylesheets/common.css">
     <link rel="stylesheet" href="stylesheets/card-livros.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 </head>
 <body>
 <header>
-    <div class="container-grid">
+    <div class="container">
         <div class="logo">
             <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
         </div>
-        <nav class="icon-menu">
+        <nav class="nav-menu">
             <a onclick="inicio()"> Inicio</a>
             <a onclick="mensagem()">Perfil </a>
             <a onclick="perfil()">Menssagens </a>
@@ -40,16 +43,15 @@
         <span class="banner-books-text">A maneira mais fácil de comprar, vender e trocar livros!</span>
 
     </div>
-    <section class="container-grid">
-        <div id="livros"></div>
+    <section class="container">
+        <div id="livros" class="row"></div>
     </section>
-    <footer>
-        <div class="footer-content">
-            Informação sobre o site pode ser adicionada aqui.
-        </div>
-    </footer>
 </main>
-
+<footer>
+    <div class="footer-content">
+        Informação sobre o site pode ser adicionada aqui.
+    </div>
+</footer>
 </body>
 </html>
   

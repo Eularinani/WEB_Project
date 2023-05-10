@@ -7,7 +7,7 @@
     margin-bottom: 30px;
 }
 .livros-card>div>img {
-    max-width: 190px;
+    max-width: calc(100% - 20px);
     height: 300px;
     flex-shrink: 0;
     margin: auto;
@@ -21,6 +21,7 @@
     flex-direction: column;
     box-shadow: 2px 2px 8px 3px #0000001a;
     background-color: white;
+
 }
 
 .livros-card>div>div>span {
@@ -35,6 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 #livros {
@@ -45,28 +47,8 @@
 }
 
 @media (min-width: 576px) {
-
-    #livros {
-        padding: 0;
-    }
-
-    .livros-card{
-        width: 50%;
-        margin-bottom: 0;
-    }
     .livros-card>div{
-        margin: 20px !important;
+        margin: 0 !important;
     }
 }
 
-@media (min-width: 768px) {
-    .livros-card{
-        width: 33%;
-    }
-}
-
-@media (min-width: 1100px) {
-    .livros-card{
-        width: 25%;
-    }
-}

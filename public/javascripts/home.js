@@ -16,13 +16,13 @@ function populate(books){
     let container = document.getElementById("livros");
     for (let book of books) {
         let containerLivros = document.createElement("div");
-        containerLivros.classList.add('livros-card');
+        containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
         let cardLivros = document.createElement("div");
         containerLivros.appendChild(cardLivros);
         let img = document.createElement("img");
         if (book.capa) {
             img.src = book.capa;
-            img.loading = "lazy";
+            img.loading = "lazy"; // carrega só as imagens quando ficam visiveis no ecrã
             img.alt = `Capa do livro ${book.titulo}`;
         } else {
             img.src = "/images/logo.png";

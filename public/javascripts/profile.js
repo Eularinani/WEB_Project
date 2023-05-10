@@ -1,26 +1,16 @@
 window.onload = async function () {
     try {
-        let result = await checkAuthenticated(true);
+        let result = await getUserAndOffer();
         if (result.err) {  throw result.err; }
         window.user = user;
+        buildResults(result.resultOferta.oferta, user);
         //document.getElementById('user').textContent =window.user.name;
      } catch (err) {
         console.log(err);
        // alert("Something went wrong!")
     }
 }
-window.onload = async function () {
-    try{
-        
-        //esse codigo traz as coisa atraves da funçao crida 
-        let res = await getAllbooks();
-        console.log(res);
-        if (!res.successful) throw {msg:"Something went wrong"};
-        populate(res.books.result);
-    } catch(err) {
-        console.log(err);
-    }
-}
+
 async function logout() {
     try {
         let result = await requestLogout();
@@ -79,4 +69,49 @@ async function addItem() {
     } else {
         alert("Error!");
     }
-} 
+}
+
+function buildResults(offer, user) {
+    var profileName = document.getElementById("profile-name");
+    profileName.textContent = user.name;
+    if (offer && offer.length) buildBooks(offer);
+}
+
+
+
+function buildBooks(books){
+    console.log(books);
+    let container = document.getElementById("livros");
+    for (let book of books) {
+        let containerLivros = document.createElement("div");
+        containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
+        let cardLivros = document.createElement("div");
+        let date = document.createElement("span");
+        containerLivros.appendChild(cardLivros);
+        let img = document.createElement("img");
+        if (book.imagem_livro) {
+            img.src = book.imagem_livro;
+            img.loading = "lazy"; // carrega só as imagens quando ficam visiveis no ecrã
+            img.alt = `Capa do livro ${book.titulo}`;
+        } else {
+            img.src = "/images/logo.png";
+            img.loading = "lazy";
+            img.alt = `Capa do livro ${book.titulo}`;
+        }
+        cardLivros.appendChild(img);
+
+        // For the section
+        let containerTitulo = document.createElement("div");
+        let nomeLivro = document.createElement("span");
+        containerTitulo.appendChild(nomeLivro);
+
+        nomeLivro.textContent = book.titulo;
+        date.textContent = new Date(book.dia).toISOString().slice(0, 10);
+        date.classList.add('text-center');
+        cardLivros.appendChild(containerTitulo);
+        cardLivros.appendChild(date);
+
+        container.appendChild(containerLivros);
+    }
+
+}

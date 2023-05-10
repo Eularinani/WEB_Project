@@ -11,12 +11,13 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
     try {
         console.log("Get authenticated user");
         let result = await User.getById(req.user.id);
-        if (result.status != 200) 
+        if (result.status != 200)
             res.status(result.status).send(result.result);
         let user = new User();
         // sendig only the name
         user.name = result.result.name;
         user.foto = result.result.foto;
+        user.id = result.result.id;
         res.status(result.status).send(user);
     } catch (err) {
         console.log(err);
