@@ -45,8 +45,6 @@ create table Estado (
 create table Transacao (
     Trasancao_id SERIAL not null,
     Transacao_nome VARCHAR(20) not null,
-    
-    Transacao_Usuario_id int not null,
 	Transacao_Local_id int not null,
 	Transacao_Oferta_id int not null,
     primary key (Trasancao_id)
@@ -60,16 +58,16 @@ create table Locais (
 
 create table Estado_Transacao(
 Estado_Transacao_id serial not null,
-Estado_Transacao_Trasancao_id int not null,
-Estado_Transacao_Estado_id int not null,
+Estado_Trasancao_id int not null,
+Estado_Estado_id int not null,
 primary key (Estado_Transacao_id)
 );
 
 create table confimacao(
 confimacao_id serial not null,
 confimacao_nome varchar(30)
-confimacao_Livro_id int not null,
-confimacao_oferta_id int not null,
+confimacao_Trasancao_id int not null,
+confimacao_user_id int not null,
 primary key (confimacao_id) 
 );
 
@@ -107,9 +105,9 @@ add constraint Oferta_fk_appuser
 foreign key (oferta_user_id) references appuser(user_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-alter table troca 
-add constraint troca_fk_oferta
-foreign key (Troca_oferta_id) references oferta(oferta_id)
+alter table confimacao 
+add constraint confimacao_fk_appuser
+foreign key (confimacao_user_id) references appuser(usr_id)
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
  
@@ -122,7 +120,7 @@ ON DELETE NO ACTION ON UPDATE NO ACTION;
  -------o codigo a baixo tem um pouco de erro
 alter table Estado_Transacao
 add constraint Estado_Transacao_fk_transacao
-foreign key (Estado_Transacao_Trasancao_id) references transacao(Trasancao_id )
+foreign key (Estado_Trasancao_id) references transacao(Trasancao_id )
 ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 alter table transacao

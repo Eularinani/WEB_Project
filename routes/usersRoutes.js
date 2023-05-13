@@ -80,7 +80,7 @@ router.post('/auth', async function (req, res, next) {
         res.status(500).send(err);
     }
 });
-
+//codigo para atualizar foto de pefil
 router.post('auth', async function(req, res, next){
     try {
          // result has the user with the database id

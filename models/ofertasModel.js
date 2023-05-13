@@ -92,7 +92,7 @@ class Ofert{
         }
     }
     
-
+//FONECENDO INFO SOBRE UMA OFERTA
     static async getEncomendaOFERTA(ofertaID) {
         try {
             let dbItems = await pool.query(
@@ -130,6 +130,30 @@ class Ofert{
     static async getofert(){
         try {
             let dbResult = await pool.query("Select * from Oferta");
+            let dbofertas = dbResult.rows;
+            let ofertas = [];
+            for (let dbofer of dbofertas) {
+                ofertas.push(dbProdToProd(dbofer));
+            }
+            return {status:200, result: ofertas};
+        } catch (err) {
+            console.log(err);
+            return {status: 500, result: {msg: "ofertas não encotradas"}};
+        }
+    
+    }
+
+
+
+
+
+     //lista de oferttas para pagina inicial
+     static async getofert(){
+        try {
+            let dbResult = await pool.query('select Oferta_id,Oferta_nome,Oferta_Dia,Titulo ,Livr_capa,usr_name '+ 
+            'from oferta '+
+            'INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id '+
+            'INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id');
             let dbofertas = dbResult.rows;
             let ofertas = [];
             for (let dbofer of dbofertas) {

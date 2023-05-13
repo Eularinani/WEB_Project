@@ -37,4 +37,18 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
         res.status(500).send(err);
     }
 });
+
+
+
+// livros para a select box para poder fazer o formulario
+router.get('',  async function (req, res, next) {
+    try {
+        console.log("Get all livros");
+        let result = await Livro.getTitulo();
+        res.status(result.status).send(result.result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
 module.exports = router;

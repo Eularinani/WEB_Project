@@ -22,13 +22,41 @@ router.post('', async function (req, res, next) {
 });
 
 
-
+// sustentando a pagina perfil
 router.get('/auth/:id',auth.verifyAuth,  async function (req, res, next) {
     try {
         let result = await oferta.getUserofertas(req.user.id);
         if(result.status != 200){
             res.status(result.status).send(result.result);
             return;}
+        res.status(result.status).send(result.result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+
+//buscando uma oferta atraves do seu id
+router.get('/auth/:id',auth.verifyAuth,  async function (req, res, next) {
+    try {
+        let result = await oferta.getEncomendaOFERTA(req.oferta.id);
+        if(result.status != 200){
+            res.status(result.status).send(result.result);
+            return;}
+        res.status(result.status).send(result.result);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
+});
+
+
+//sustenta a pagina iniciuio
+router.get('', async function (req, res, next) {
+    try {
+        console.log("get all oferta");
+        let result = await oferta.getofert();
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);
