@@ -45,7 +45,7 @@ INSERT INTO Autor (Autor_nome) VALUES ('Ben Carson');
 INSERT INTO Autor (Autor_nome) VALUES ('Nikita Gill');
 
 
-
+INSERT INTO  (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('1', '1', '1');
 
 
 INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES ('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','3');
@@ -70,11 +70,27 @@ INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES (‘6’, 
 
 
 
-
+//
 select  usr_name,usr_foto,Oferta_nome, Oferta_foto,Oferta_Dia,Titulo, Livr_capa,Livro_Volume 
                 FROM appuser
                 INNER JOIN oferta on appuser.usr_id =oferta.oferta_user_id
                 INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+//
+select Oferta_id,Oferta_nome,Oferta_Dia,Titulo ,Livr_capa,usr_name 
+from oferta
+INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+//
+INSERT INTO Transacao (Transacao_nome, Transacao_Usuario_id, Transacao_Oferta_id) VALUES ('Compra de livro', '1', '1');
+				
+				select Oferta_nome,Oferta_foto,Oferta_Dia, Titulo ,Livr_capa , Livro_Volume,Transacao_nome 
+				from oferta
+				INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+				INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id
+				INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+				WHERE oferta_id =1
+
+
 
                 ALTER TABLE Livro
 DROP COLUMN livr_capa;

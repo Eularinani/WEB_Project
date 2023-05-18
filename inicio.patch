@@ -1,0 +1,1464 @@
+Subject: [PATCH] inicio
+---
+Index: public/stylesheets/kevin.css
+===================================================================
+diff --git a/public/stylesheets/kevin.css b/public/stylesheets/kevin.css
+deleted file mode 100644
+--- a/public/stylesheets/kevin.css	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ /dev/null	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
+@@ -1,88 +0,0 @@
+-
+-.book-list {
+-  display: flex;
+-  flex-wrap: wrap;
+-  justify-content: center;
+-}
+-
+-.book {
+-  display: flex;
+-  flex-direction: column;
+-  align-items: center;
+-  margin: 20px;
+-  border: 1px solid #ccc;
+-  padding: 10px;
+-}
+-
+-.book img {
+-  width: 200px;
+-  height: 300px;
+-  object-fit: cover;
+-  margin-bottom: 10px;
+-}
+-
+-.book h2 {
+-  font-size: 24px;
+-  margin: 0;
+-  margin-bottom: 10px;
+-}
+-
+-.book p {
+-  font-size: 18px;
+-  margin: 0;
+-}
+-
+-
+-#fundo {
+-    width: 1454px;
+-    height: 500px;
+-  }
+-
+-  #container {
+-    position: relative;
+-    width: 500px;
+-    height: 300px;
+-  }
+-  
+-  #texto {
+-    position: absolute;
+-    top: 38%;
+-    left: 53%;
+-    transform: translate(-50%, -50%);
+-    color: #371818;
+-    font-size: 70px;
+-    font-weight: bold;
+-  }
+-
+-  
+-  form {
+-  display: flex;
+-  align-items: center;
+-}
+-
+-input[type="text"] {
+-  padding: 8px;
+-  font-size: 16px;
+-  border: none;
+-  border-bottom: 2px solid #371818;
+-  outline: none;
+-}
+-
+-button[type="submit"] {
+-  padding: 8px 16px;
+-  background-color: #371818;
+-  color: #fff;
+-  border: none;
+-  border-radius: 4px;
+-  cursor: pointer;
+-}
+-
+-  
+- 
+-  
+-  
+-  
+-  
+-  
+-  
+-  
+Index: public/stylesheets/sid.css
+===================================================================
+diff --git a/public/stylesheets/sid.css b/public/stylesheets/sid.css
+deleted file mode 100644
+--- a/public/stylesheets/sid.css	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ /dev/null	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
+@@ -1,67 +0,0 @@
+-
+-.profile-img {
+-  display: block;
+-}
+-
+-  #container {
+-    position: relative;
+-    width: 500px;
+-    height: 300px;
+-  }
+-  
+-  form {
+-  display: flex;
+-  align-items: center;
+-}
+-
+-#bts{
+-  display: flex;
+-}
+-
+-button[type="submit"] {
+-  padding: 8px 16px;
+-  background-color: #F4E61A;
+-  color: #fff;
+-  border: none;
+-  border-radius: 4px;
+-  cursor: pointer;
+-}
+-
+-.banner-books {
+-  width: 100%;
+-  height: 300px;
+-  padding-top: 3px;
+-}
+-
+-.banner-books-text {
+-  color: #371818;
+-  font-size: 2rem;
+-  font-weight: bold;
+-  position: absolute;
+-  text-align: center;
+-  padding-top: 20px;
+-  width: 50%;
+-  margin-left: auto;
+-  margin-right: auto;
+-  left: 0;
+-  right: 0;
+-}
+-
+-
+-@media (min-width: 576px) {
+-  .banner-books-text{
+-    font-size: 2.5rem;
+-    padding-top: 35px;
+-  }
+-  .banner-books {
+-    height: 350px;
+-  }
+-}
+-@media (min-width: 870px) {
+-  .banner-books-text{
+-    font-size: 3rem;
+-  }
+-  .banner-books {
+-    height: 400px;
+-  }
+-}
+Index: public/javascripts/login.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/login.js b/public/javascripts/login.js
+--- a/public/javascripts/login.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/javascripts/login.js	(date 1684163140362)
+@@ -10,6 +10,11 @@
+         } else if (!result.successful) {
+             msgDOM.textContent = "Wrong username or password";    
+         } else {
++            let result = await requestProfile();
++            console.log("login", result);
++            /*Aqui guardamos em storage os dados do user quando este faz login com sucesso, apagamos depois quando faz logout
++            * Assim nºao é preciso fazer queries de novo em todos os pedidos */
++            localStorage.setItem("user", JSON.stringify(result.user));
+             msgDOM.textContent = "Login successful!";    
+             window.location.pathname = "/Home.html"
+         }
+Index: public/stylesheets/common.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/common.css b/public/stylesheets/common.css
+--- a/public/stylesheets/common.css	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/stylesheets/common.css	(date 1684157588578)
+@@ -1,6 +1,6 @@
+ 
+ 
+-/*Estilos do Header, assim se tiverem de alterar, só alteram num lugar, e não em todos os ficheiros CSS*/
++/*Estilos do Header, podemos importar este ficheiro em todas as páginas*/
+ header {
+     display: flex;
+     align-items: center;
+@@ -10,7 +10,7 @@
+     background: #b08e6b;
+     position: sticky;
+     top: 0;
+-    z-index: 9999;
++    z-index: 1000;
+ }
+ header>div {
+     display: flex;
+@@ -30,6 +30,7 @@
+     color: #ffffff;
+ }
+ 
++/*Estilos para cada opção do menu*/
+ .nav-menu>a {
+     display: flex;
+     padding: 1%;
+@@ -39,6 +40,13 @@
+     border-radius: 20%;
+     cursor: pointer;
+     margin: 10px;
++    text-decoration: none;
++}
++
++/*estilos para quando passamos o rato por cima das opções do menu*/
++.nav-menu>a:hover {
++    background-color: #7a5c3c;
++    color: #ffffff;
+ }
+ 
+ /*O proprio logo*/
+@@ -46,13 +54,15 @@
+     height: 70px;
+ }
+ 
++/*Rodapé no fim da página*/
+ footer {
+     height: 500px;
+-    margin-top: -250px;
++    margin-top: -250px; /*margem negativa para ficar metade por cima da última linha de filmes*/
+     width: 100%;
+     background-color: #b08e6b;
+ }
+ 
++/*Div onde vamos ter os links do rodapé*/
+ footer>.footer-content{
+     padding-top: 300px;
+     font-size: 3rem;
+Index: routes/livrosRoutes.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/routes/livrosRoutes.js b/routes/livrosRoutes.js
+--- a/routes/livrosRoutes.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/routes/livrosRoutes.js	(date 1684067079796)
+@@ -41,7 +41,7 @@
+ 
+ 
+ // livros para a select box para poder fazer o formulario
+-router.get('',  async function (req, res, next) {
++router.get('/titulos',  async function (req, res, next) {
+     try {
+         console.log("Get all livros");
+         let result = await Livro.getTitulo();
+Index: public/stylesheets/card-livros.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/card-livros.css b/public/stylesheets/card-livros.css
+--- a/public/stylesheets/card-livros.css	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/stylesheets/card-livros.css	(date 1684157163354)
+@@ -1,17 +1,21 @@
+ 
+-/*Estilos dos cartões dos livros, como penso que vão ter estes cartões em mais páginas, assim é só usar as mesmas classes no html em todos o lados, e é só importar este ficheiro onde tiverem mais cards dos livros */
++/*Estilos dos cartões dos livros, só precisamos importar este ficheiro onde tivermos mais cards dos livros */
++
++/* div pai dos cartões*/
+ .livros-card{
+     display: flex;
+-    flex: 0 0 auto;
+-    width: 100%;
+     margin-bottom: 30px;
+ }
++
++/*imagem do livro*/
+ .livros-card>div>img {
+     max-width: calc(100% - 20px);
+     height: 300px;
+     flex-shrink: 0;
+     margin: auto;
+ }
++
++/*div filha do container para aplicar os paddings, margins, alinhar os elementos em forma de coluna*/
+ .livros-card>div {
+     border: 1px solid #ccc;
+     padding: 20px;
+@@ -24,6 +28,7 @@
+ 
+ }
+ 
++/*titulo do livro no card, por baixo da capa do livro*/
+ .livros-card>div>div>span {
+     margin-bottom: 10px;
+     margin-top: 20px;
+@@ -31,6 +36,7 @@
+     font-weight: bold;
+ }
+ 
++/*div que contém o titulo do livro, height 100 para que todos os cartões sejam da mesma altura e equilibrados*/
+ .livros-card>div>div {
+     height: 100%;
+     display: flex;
+@@ -40,12 +46,12 @@
+ }
+ 
+ #livros {
+-    display: flex;
+-    flex-wrap: wrap;
+     padding-bottom: 50px;
+     margin-top: 30px;
+ }
+ 
++
++/*Estilo aplicado em ecrãs maiores de 576 px*/
+ @media (min-width: 576px) {
+     .livros-card>div{
+         margin: 0 !important;
+Index: public/javascripts/utils/verifications.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/utils/verifications.js b/public/javascripts/utils/verifications.js
+--- a/public/javascripts/utils/verifications.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/javascripts/utils/verifications.js	(date 1684075226622)
+@@ -8,19 +8,17 @@
+ // Otherwise it will set the window.user with the user profile
+ async function getUserAndOffer() {
+     try {
+-        let result = await requestProfile();
++        let user = JSON.parse(localStorage.getItem("user"));
+         let resultOferta;
+-        if (result && result.user) {
+-            resultOferta = await requestOferta(2);
++
++        if (user) {
++            resultOferta = await requestOferta(user.id);
+         }
+         else {
+             return {successful: false};
+         }
+-        if (result.unauthenticated)
++        if (!user)
+             changePage("index.html","Not authenticated. Going to login page");
+-        else if (!result.successful || result.err) 
+-            throw err || "Not successful";
+-        else window.user = result.user;
+         return {successful: true, resultOferta};
+     } catch (err) {
+         console.log(err);
+Index: routes/ofertasRoutes.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/routes/ofertasRoutes.js b/routes/ofertasRoutes.js
+--- a/routes/ofertasRoutes.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/routes/ofertasRoutes.js	(date 1684161662187)
+@@ -53,9 +53,9 @@
+ 
+ 
+ //sustenta a pagina iniciuio
+-router.get('', async function (req, res, next) {
++router.get('/inicio/', async function (req, res, next) {
+     try {
+-        console.log("get all oferta");
++        console.log("get all inicio route");
+         let result = await oferta.getofert();
+         res.status(result.status).send(result.result);
+     } catch (err) {
+@@ -63,6 +63,17 @@
+         res.status(500).send(err);
+     }
+ });
++
++/*route para ir buscar dados de uma oferta*/
++router.get('/detalhe-oferta/:idOferta', async function (req, res, next) {
++    try {
++        let result = await oferta.getEncomendaOFERTA(req.params.idOferta);
++        res.status(result.status).send(result.result);
++    } catch (err) {
++        console.log(err);
++        res.status(500).send(err);
++    }
++});
+ 
+ 
+ 
+Index: public/Images/arrow-detalhes.svg
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/Images/arrow-detalhes.svg b/public/Images/arrow-detalhes.svg
+new file mode 100644
+--- /dev/null	(date 1684063238519)
++++ b/public/Images/arrow-detalhes.svg	(date 1684063238519)
+@@ -0,0 +1,1 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7a5c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+\ No newline at end of file
+Index: public/javascripts/profile.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/profile.js b/public/javascripts/profile.js
+--- a/public/javascripts/profile.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/javascripts/profile.js	(date 1684163140334)
+@@ -2,58 +2,13 @@
+     try {
+         let result = await getUserAndOffer();
+         if (result.err) {  throw result.err; }
+-        window.user = user;
+-        buildResults(result.resultOferta.oferta, user);
+-        //document.getElementById('user').textContent =window.user.name;
++        buildResults(result.resultOferta.oferta);
+      } catch (err) {
+         console.log(err);
+        // alert("Something went wrong!")
+     }
+ }
+ 
+-async function logout() {
+-    try {
+-        let result = await requestLogout();
+-        if (!result.successful || result.err)
+-            throw result.err || { err: "Not successfull" }
+-        window.location.pathname = "/index.html"
+-    } catch (err) {
+-        console.log(err);
+-       // alert("Something is not working");
+-    }
+-}
+-
+-async function inicio() {
+-    try {
+-
+-        window.location.pathname = "/inicio.html"
+-    } catch (err) {
+-        console.log(err);
+-       // alert("Something is not working");
+-    }
+-}
+-
+-
+-async function mensagem() {
+-    try {
+-        window.location.pathname = "/Home.html"
+-    } catch (err) {
+-        console.log(err);
+-       // alert("Something is not working");
+-    }
+-}
+-
+-async function perfil() {
+-    try {
+-        window.location.pathname = "/profile.html"
+-    } catch (err) {
+-        console.log(err);
+-       // alert("Something is not working");
+-    }
+-}
+-
+-
+-
+ async function addItem() {
+     let slId = sessionStorage.getItem("shoplistId");
+     let prodId = parseInt(document.getElementById("prodId").value);
+@@ -71,19 +26,22 @@
+     }
+ }
+ 
+-function buildResults(offer, user) {
++/*Aqui adiciona o nome do utilizador, indo ao storage buscar esta informação e depois cria os cards com os livros na buildBooks*/
++function buildResults(offer) {
+     var profileName = document.getElementById("profile-name");
++    let user = JSON.parse(localStorage.getItem("user"));
+     profileName.textContent = user.name;
+     if (offer && offer.length) buildBooks(offer);
+ }
+ 
+ 
+-
++/*Cria os cads com os livros para o perfil*/
+ function buildBooks(books){
+     console.log(books);
+     let container = document.getElementById("livros");
+     for (let book of books) {
+         let containerLivros = document.createElement("div");
++        // classes bootstrap para ter design responsivo para os cards dos livros
+         containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
+         let cardLivros = document.createElement("div");
+         let date = document.createElement("span");
+Index: public/javascripts/inicio.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/inicio.js b/public/javascripts/inicio.js
+new file mode 100644
+--- /dev/null	(date 1684162041174)
++++ b/public/javascripts/inicio.js	(date 1684162041174)
+@@ -0,0 +1,171 @@
++window.onload = async function () {
++    try {
++        /*Buscar todas as ofertas*/
++        let result = await getDataInicio();
++        const payload = result && result.oferta || [];
++        /*Criar os cards das ofertas com o livro*/
++        buildInicio(payload);
++        /**/
++        getNomeLivrosParaModal();
++        submitFormlarioOfertaModal();
++
++        if (result.err) {  throw result.err; }
++
++        console.log("getDataInicio loading");
++        //buildResults(result.resultOferta.oferta, user);
++    } catch (err) {
++        console.log(err);
++        // alert("Something went wrong!")
++    }
++}
++
++async function getDataInicio() {
++    try {
++        const response = await fetch(`/api/ofertas/inicio`);
++        console.log("-------------------------------------------------------");
++        console.log("request inicio", response);
++        var result = await response.json();
++        return { successful: response.status == 200,
++            unauthenticated: response.status == 401,
++            oferta: result};
++    } catch (err) {
++        // Treat 500 errors here
++        console.log(err);
++        return {err: err};
++    }
++}
++
++
++function buildInicio(books) {
++    console.log(books);
++    let container = document.getElementById("inicio-ofertas");
++    if (books && books.length) {
++    for (let book of books) {
++        let containerLivros = document.createElement("div");
++        // classes bootstrap para ter design responsivo para os cards dos livros
++        containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
++        let cardLivros = document.createElement("div");
++        containerLivros.appendChild(cardLivros);
++        let img = document.createElement("img");
++        if (book.imagem_livro) {
++            img.src = book.imagem_livro;
++            img.loading = "lazy"; // carrega só as imagens quando ficam visiveis no ecrã
++            img.alt = `Capa do livro ${book.titulo}`;
++        } else {
++            img.src = "/images/logo.png";
++            img.loading = "lazy";
++            img.alt = `Capa do livro ${book.titulo}`;
++        }
++        cardLivros.appendChild(img);
++
++        // For the section
++        let containerTitulo = document.createElement("div");
++        let nomeLivro = document.createElement("span");
++        containerTitulo.appendChild(nomeLivro);
++
++        nomeLivro.textContent = book.titulo;
++        cardLivros.appendChild(containerTitulo);
++
++        // extra for view details
++        let verDetalhes = document.createElement("button");
++        verDetalhes.setAttribute("id", "ver-detalhes-oferta");
++        verDetalhes.classList.add("ver-detalhes-oferta");
++        verDetalhes.textContent = "Ver detalhes";
++        cardLivros.appendChild(verDetalhes);
++        let idOferta = document.createElement("div");
++        idOferta.setAttribute("data-id", book.id);
++        idOferta.setAttribute("id", "idOferta");
++        idOferta.setAttribute("hidden", true);
++
++        verDetalhes.appendChild(idOferta);
++        container.appendChild(containerLivros);
++
++        eventosModalDetalhesOferta();
++
++    }
++    } else
++    {
++        let noBooks = document.createElement("p");
++        container.appendChild(noBooks);
++    }
++
++}
++
++function eventosModalDetalhesOferta() {
++    // modal para o detalhe do livro
++    const myModal = new bootstrap.Modal(document.getElementById('modalDetalhes'), {
++        keyboard: false
++    })
++
++    document.getElementById("ver-detalhes-oferta").addEventListener("click", async function () {
++        try {
++            // ir buscar o id da oferta que estamos a guardar em cada cartao da oferta da página inicio para depois ser enviada para a base de dados, para ir bucar a oferta do livro que clicamos
++            const idOferta = this.querySelector("#idOferta").dataset.id;
++            /*chamar a route que devolve os dados de uma oferta onde enviamos o seu id*/
++            const response = await fetch(`/api/ofertas/detalhe-oferta/${idOferta}`);
++            var result = await response.json();
++            /*Preenchemos os valores da modal aqui*/
++            document.getElementById('tituloLivro').textContent = result.titulo;
++            document.getElementById('diaOferta').textContent = new Date(result.dia).toISOString().slice(0, 10);
++            document.getElementById('tipoOferta').textContent = result.nome;
++            document.getElementById('nomeComprador').textContent = result.nome_utilizador;
++            myModal.show();
++        } catch (err) {
++            // Treat 500 errors here
++            console.log(err);
++            return {err: err};
++        }
++
++    })
++}
++
++/*Listener para ouvir quando a modal é aberta e então ir biscar os titulos dos livros
++*O evento 'show.bs.modal' é do bootstrap, executa quando clicamos no botão para abrir esta modal */
++async function getNomeLivrosParaModal() {
++    var myModalEl = document.getElementById('modalRegistrar')
++    myModalEl.addEventListener('show.bs.modal', async function (event) {
++        console.log("abrir modal");
++        try {
++            /*Chamada para ir buscar as opções dos livros para a modal, para o select option*/
++            const response = await fetch(`/api/livros/titulos`);
++            console.log("request titulos", response);
++            var books = await response.json();
++
++            if (books && books.length) {
++                const selectListaLivros = document.getElementById("opcoesLivros");
++
++                /*Aqui estamos a adicionar todos os livros à modal, que são devolvidos pelo query*/
++                for (const book of books) {
++                    var option = document.createElement('option');
++                    option.text = book.titulo;
++                    option.value = book.id;
++                    selectListaLivros.add(option, 0);
++                }
++
++            }
++
++        } catch (err) {
++            // Treat 500 errors here
++            console.log(err);
++            return {err: err};
++        }
++    })
++
++}
++
++/*Evento para escutar quando clicamos no botão de submeter uma oferta*/
++function submitFormlarioOfertaModal(){
++    const form = document.getElementById("form-oferta");
++    form.addEventListener("submit", function(e) {
++        console.log("formulario");
++        e.preventDefault();
++
++        const localizacao = document.getElementById("inputLocalizacao").value;
++        const tipoOperacao = document.getElementById("inputOperacao").value;
++        const livros = document.getElementById("opcoesLivros").value;
++        console.log(localizacao, tipoOperacao, livros)
++
++        // aqui tem de ser chamada a rota com o POST para quardar os dados que já estão acima, que vêm do formulário
++    })
++}
++
+Index: public/javascripts/shared.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/shared.js b/public/javascripts/shared.js
+new file mode 100644
+--- /dev/null	(date 1684163140350)
++++ b/public/javascripts/shared.js	(date 1684163140350)
+@@ -0,0 +1,15 @@
++/*Como o logout é chamado em todas as páginas, adicionamos a este ficheiro para ser mais fácil*/
++async function logout() {
++    try {
++        let result = await requestLogout();
++        if (!result.successful || result.err)
++            throw result.err || { err: "Not successfull" }
++        /*Apagamos os dados do user aqui, ao remover do storage do browser
++        * */
++        localStorage.removeItem("user");
++        window.location.pathname = "/index.html"
++    } catch (err) {
++        console.log(err);
++        // alert("Something is not working");
++    }
++}
+Index: public/Home.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/Home.html b/public/Home.html
+--- a/public/Home.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/Home.html	(date 1684161038157)
+@@ -5,15 +5,15 @@
+     <title> Shop Lists </title>
+     <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
+ 
+-    <link rel="stylesheet" href="./stylesheets/perfil.css">
+     <script src="./javascripts/utils/verifications.js"></script>
+     <script src="./javascripts/requests/usersRequests.js"></script>
+     <script src="./javascripts/requests/livrosRequests.js"></script>
+-    <script src="./javascripts/profile.js"></script>
++    <script src="./javascripts/shared.js"></script>
+     <script src="./javascripts/home.js"></script>
+-    <link rel="stylesheet" href="./stylesheets/sid.css">
+     <link rel="stylesheet" href="stylesheets/common.css">
+     <link rel="stylesheet" href="stylesheets/card-livros.css">
++    <link rel="stylesheet" href="stylesheets/banner.css">
++
+ 
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+@@ -28,9 +28,9 @@
+             <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="nav-menu">
+-            <a onclick="inicio()"> Inicio</a>
+-            <a onclick="mensagem()">Perfil </a>
+-            <a onclick="perfil()">Menssagens </a>
++            <a href="/inicio.html"> Inicio</a>
++            <a href="/Home.html">Perfil </a>
++            <a href="/profile.html">Mensagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+     </div>
+@@ -44,9 +44,12 @@
+ 
+     </div>
+     <section class="container">
+-        <div id="livros" class="row"></div>
++        <div id="livros" class="row">
++            <!--Os livros estão a ser adicionados aqui por javascript-->
++        </div>
+     </section>
+ </main>
++<!--Rodapé-->
+ <footer>
+     <div class="footer-content">
+         Informação sobre o site pode ser adicionada aqui.
+Index: models/ofertasModel.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/ofertasModel.js b/models/ofertasModel.js
+--- a/models/ofertasModel.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/models/ofertasModel.js	(date 1684101033145)
+@@ -102,21 +102,25 @@
+                 INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+                 INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id
+                 WHERE oferta_id = $1`,  [ofertaID]);
+-            let dbItem = dbItems.rows;
+-            if(!dbItem.length)
++            let dbItem = dbItems.rows && dbItems.rows.length && dbItems.rows[0];
++            console.log("kkkkkkkkkkkkkkkkk");
++            console.log(dbItem);
++            if(!dbItem)
+                 return {
+                     status: 400, result: [{
+                         location: "body", param: "id",
+                         msg: "Essa oferta já foi feita"
+                     }]
+                 }; 
+-            let ofertas;
++            let ofertas ={};
+             ofertas.nome = dbItem.oferta_nome;
+             ofertas.dia = dbItem.oferta_dia;
+             ofertas.titulo = dbItem.titulo;
+             ofertas.capa = dbItem.livr_capa;
+             ofertas.nome_utilizador = dbItem.usr_name;
+-            ofertas.nome_transacao = dbItem.transacao.nome;
++            // ofertas.nome_transacao = dbItem.transacao.nome;
++
++            console.log("ofertas", ofertas)
+             return {status:200, result: ofertas};
+ 
+         } catch (err) {
+@@ -127,14 +131,15 @@
+ 
+ 
+     //lista de oferttas 
+-    static async getofert(){
++    static async getofertaOld(){
+         try {
+             let dbResult = await pool.query("Select * from Oferta");
+             let dbofertas = dbResult.rows;
+             let ofertas = [];
+-            for (let dbofer of dbofertas) {
++            console.log(ofertas);
++/*            for (let dbofer of dbofertas) {
+                 ofertas.push(dbProdToProd(dbofer));
+-            }
++            }*/
+             return {status:200, result: ofertas};
+         } catch (err) {
+             console.log(err);
+@@ -148,18 +153,20 @@
+ 
+ 
+      //lista de oferttas para pagina inicial
+-     static async getofert(){
++    static async getofert(){
+         try {
+             let dbResult = await pool.query('select Oferta_id,Oferta_nome,Oferta_Dia,Titulo ,Livr_capa,usr_name '+ 
+             'from oferta '+
+             'INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id '+
+             'INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id');
+             let dbofertas = dbResult.rows;
++            console.log(".................................");
++            console.log(dbofertas);
+             let ofertas = [];
+             for (let dbofer of dbofertas) {
+-                ofertas.push(dbProdToProd(dbofer));
++                ofertas.push(dbOfertaTooferta(dbofer));
+             }
+-            return {status:200, result: ofertas};
++            return {status:200, result: ofertas || []};
+         } catch (err) {
+             console.log(err);
+             return {status: 500, result: {msg: "ofertas não encotradas"}};
+Index: models/livrosModel.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/models/livrosModel.js b/models/livrosModel.js
+--- a/models/livrosModel.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/models/livrosModel.js	(date 1684071547811)
+@@ -58,9 +58,10 @@
+ //buscando todos titulos 
+ static async getTitulo() {
+     try {
+-        let dbResult = await pool.query("select titulo from livro");
++        let dbResult = await pool.query("select titulo, livro_id from livro");
+         let dbbooks = dbResult.rows;
+         let book = [];
++        console.log("dbbooks",dbbooks);
+         for (let dbbook of dbbooks) {
+             book.push(dbLivroToLivro(dbbook));
+         }
+Index: public/formulario.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/formulario.html b/public/formulario.html
+--- a/public/formulario.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/formulario.html	(date 1684159425205)
+@@ -8,15 +8,16 @@
+     <link rel="stylesheet" href="stylesheets/common.css">
+ </head>
+ <body>
++
+ <header>
+     <div class="container">
+         <div class="logo">
+             <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="nav-menu">
+-            <a onclick="inicio()"> Inicio</a>
+-            <a onclick="mensagem()">Perfil </a>
+-            <a onclick="perfil()">Menssagens </a>
++            <a href="/inicio.html"> Inicio</a>
++            <a href="/Home.html">Perfil </a>
++            <a href="/profile.html">Mensagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+     </div>
+Index: public/profile.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/profile.html b/public/profile.html
+--- a/public/profile.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/profile.html	(date 1684161374531)
+@@ -9,6 +9,7 @@
+     <link rel="stylesheet" href="stylesheets/card-livros.css">
+     <script src="./javascripts/utils/verifications.js"></script>
+     <script src="./javascripts/requests/usersRequests.js"></script>
++    <script src="./javascripts/shared.js"></script>
+     <script src="./javascripts/profile.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@@ -23,9 +24,9 @@
+             <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="nav-menu">
+-            <a onclick="inicio()"> Inicio</a>
+-            <a onclick="mensagem()">Perfil </a>
+-            <a onclick="perfil()">Menssagens </a>
++            <a href="/inicio.html"> Inicio</a>
++            <a href="/Home.html">Perfil </a>
++            <a href="/profile.html">Mensagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+     </div>
+@@ -39,14 +40,16 @@
+       <div class="profile-avatar-container">
+           <img class="profile-image" src="./Images/avatar.png" alt="Imagem de perfil">
+       </div>
+-          <p class="profile-name" id="profile-name"></p>
++          <p class="profile-name" id="profile-name"></p><!-- o nome do utilizador é adicionado no ficheiro profile.js na fnção buildResults-->
+       </div>
+ 
+   </section>
+     <section class="container">
+         <div class="profile-container-livros">
+             <h1>Os meus livros</h1>
+-            <div id="livros"></div>
++            <div id="livros">
++                <!--todos os livros são adicionados no profile.js na função buildBooks -->
++            </div>
+         </div>
+     </section>
+ </main>
+Index: public/inicio.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/inicio.html b/public/inicio.html
+--- a/public/inicio.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/inicio.html	(date 1684163280186)
+@@ -3,105 +3,150 @@
+ <head>
+     <meta charset="UTF-8">
+     <title> Shop Lists </title>
+-    <link rel="stylesheet" href="./stylesheets/kevin.css">
++    <link rel="stylesheet" href="stylesheets/inicio.css">
+     <link rel="stylesheet" href="stylesheets/common.css">
++    <link rel="stylesheet" href="stylesheets/banner.css">
++    <link rel="stylesheet" href="stylesheets/card-livros.css">
++    <script src="./javascripts/requests/usersRequests.js"></script>
++    <script src="./javascripts/shared.js"></script>
++    <script src="./javascripts/inicio.js"></script>
++    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
++          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
++    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
++            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
++            crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+-    
+-  
++
++
+ </head>
+ <body>
+ <header>
+-  <div class="container">
+-    <div class="logo">
+-      <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+-    </div>
+-    <nav class="nav-menu">
+-      <a onclick="inicio()"> Inicio</a>
+-      <a onclick="mensagem()">Perfil </a>
+-      <a onclick="perfil()">Menssagens </a>
+-      <a onclick="logout()">Logout </a>
+-    </nav>
+-  </div>
++    <div class="container">
++        <div class="logo">
++            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
++        </div>
++        <nav class="nav-menu">
++            <a href="/inicio.html"> Inicio</a>
++            <a href="/Home.html">Perfil </a>
++            <a href="/profile.html">Mensagens </a>
++            <a onclick="logout()">Logout </a>
++        </nav>
++    </div>
+ </header>
+-   <main>
+-    <form>
+-      <input type="text" placeholder="Pesquisar...">
+-      <button type="submit">Buscar</button>
+-    </form>
+-    
+-       
+-        <img id="fundo" src="https://web-static.wrike.com/blog/content/uploads/2014/07/iStock-587536358.jpg?av=95d3c7b72e8ec61ed2a871230b0aae5f" alt="imagem de topo">
+-        
+-        
+-        <div id="texto">Veja uma variedade enorme de livros.</div>
+-  </div>
+-
+-
+-    <div class="book-list">
+-      <div class="book">
+-        <img src="https://img.wook.pt/images/it-starts-with-us-colleen-hoover/MXwyNjYzMDA1OHwyMjkwNjY0NXwxNjcyMzk0ODM4MDAw/500x" alt="Book Cover">
+-        <h2>IT STARTS WITH US</h2>
+-        <p>€ 15,00</p>
+-      </div>
+-      
+-      <div class="book">
+-        <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585578175i/40024121.jpg" alt="Book Cover">
+-        <h2>THE GILDED ONES</h2>
+-        <p>€ 18,00</p>
+-      </div>
+-      
+-      <div class="book">
+-        <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/A1Byvft8e0L._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
+-        <h2>Home is Not a Country</h2>
+-        <p>€ 19,99</p>
+-      </div>
+-      
+-      <div class="book">
+-        <img src="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81pA6-hv+2L.jpg" alt="Book Cover">
+-        <h2>The Institute</h2>
+-        <p>€ 14,99</p>
+-      </div>
+-      
+-      <div class="book">
+-        <img src="https://static.fnac-static.com/multimedia/Images/PT/NR/43/45/0f/1000771/1540-1/tsp20170105130246/Breve-Historia-da-Angola-Moderna-Sec-XIX-XXI.jpg" alt="Book Cover">
+-        <h2>Angola Moderna</h2>
+-        <p>€ 9,99</p>
+-      </div>
+-      
+-      <div class="book">
+-        <img src="https://m.media-amazon.com/images/I/91+yZ2ZOESL._AC_UF1000,1000_QL80_.jpg" alt="Book Cover">
+-        <h2>O desejo de Kianda</h2>
+-        <p>Troca</p>
+-      
+-      </div>
+-      <div class="book">
+-        <img src="https://img.wook.pt/images/nzinga-de-angola-linda-m-heywood/MXwyMTUwMjIxOXwxNzM0ODAxOXwxNTE5NzUzMDIwMDAw/500x" alt="Book Cover">
+-        <h2>Nzinga de Angola</h2>
+-        <p>€ 16,00</p>
+-      
+-      </div>
+-
+-      <div class="book">
+-        <img src="https://img.wook.pt/images/o-diario-de-um-banana-15-jeff-kinney/MXwyNDEyODk5MHwyMDE5OTY2NHwxNjAzNzA1NzI1MDAw/500x" alt="Book Cover">
+-        <h2>O diário de um banana</h2>
+-        <p>€ 16,99</p>
+-      
+-      </div>
+-
+-      <div class="book">
+-        <img src="https://img.wook.pt/images/o-diario-de-um-banana-e-o-meu-jeff-kinney/MXwxMzQyMDk2OHw4OTk0NTQ2fDE2NTAyNzAyNzQwMDA=/500x" alt="Book Cover">
+-        <h2>O diario de um banana</h2>
+-        <p>Troca</p>
+-      
+-      </div>
+-
+-      <div class="book">
+-        <img src="https://kbimages1-a.akamaihd.net/da56c2d7-d73a-48c4-b899-a3a05fc48779/1200/1200/False/spare-7.jpg" alt="Book Cover">
+-        <h2>Spare</h2>
+-        <p>€ 17,99</p>
+-      
+-      </div>
+-    </main>
+-  </body>
++<main>
++    <!--    <form>
++          <input type="text" placeholder="Pesquisar...">
++          <button type="submit">Buscar</button>
++        </form>-->
++    <div>
++        <img class="banner-books"
++             src="https://web-static.wrike.com/blog/content/uploads/2014/07/iStock-587536358.jpg?av=95d3c7b72e8ec61ed2a871230b0aae5f"
++             alt="">
++        <span class="banner-books-text">Veja uma variedade enorme de livros!</span>
++
++    </div>
++
++    <section class="container">
++    <div class="adicionar-oferta-container">
++        <div>
++            <p class="m-0">Aproveite para adicionar uma nova oferta de livro!</p>
++            <!--data-bs-toggle="modal" data-bs-target="#modalRegistrar" estes data attributes são controlados pelo bootstrap, que faz com que abra a modal-->
++            <button class="btn btn-lg" data-bs-toggle="modal" data-bs-target="#modalRegistrar">Adicionar Oferta</button>
++        </div>
++    </div>
++
++
++        <div id="inicio-ofertas" ></div>
++    </section>
++
++
++</main>
++<!--rodapé-->
++<footer>
++    <div class="footer-content">
++        Informação sobre o site pode ser adicionada aqui.
++    </div>
++</footer>
++
++<!--Modal para registar uma oferta-->
++<div class="modal fade" id="modalRegistrar" tabindex="-1" aria-labelledby="titleModalRegistrar"
++     aria-hidden="true">
++    <!--modal-fullscreen-sm-down esta class faz com que em ecrãs menores fica uma modal fullscreen-->
++    <div class="modal-dialog modal-fullscreen-sm-down">
++        <div class="modal-content">
++            <div class="modal-header">
++                <h1 class="modal-title" id="titleModalRegistrar">Adicionar Oferta</h1>
++                <!--data-bs-dismiss="modal" este data attribute é do bootstrap que faz com que feche a modal-->
++                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
++            </div>
++            <div class="modal-body">
++                <form id="form-oferta">
++                    <!--<div class="btn-fotograria-oferta">
++                        <button>Carregar imagem</button>
++                    </div>-->
++                    <div class="mb-3">
++                        <label for="inputOperacao" class="form-label">Tipo operação</label>
++                        <input type="text" class="form-control" id="inputOperacao">
++                    </div>
++                    <div class="mb-3">
++                        <label for="inputLocalizacao" class="form-label">Localização</label>
++                        <input type="text" class="form-control" id="inputLocalizacao">
++                    </div>
++                    <div class="mb-3">
++                        <label for="opcoesLivros" class="form-label">Selecione um livro</label>
++                        <select class="form-select form-select-lg mb-3" id="opcoesLivros">
++                            <!--Opcoes estão a ser adicionadas dinamicamente no inicio.js na função getNomeLivrosParaModal-->
++                        </select>
++                    </div>
++
++                    <div class="modal-footer">
++                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
++                        <button type="submit" class="btn btn-guardar-oferta">Guardar</button>
++                        <!--Temos um evento a ouvir o submit deste formulário no inicio.js na função submitFormlarioOfertaModal-->
++                    </div>
++                </form>
++            </div>
++        </div>
++    </div>
++</div>
++
++<!--Modal para ver detalhes da oferta-->
++<div class="modal fade" id="modalDetalhes" tabindex="-1" aria-labelledby="titleModalDetalhes"
++     aria-hidden="true">
++    <!--modal-fullscreen-sm-down esta class faz com que em ecrãs menores fica uma modal fullscreen-->
++    <div class="modal-dialog modal-fullscreen-sm-down">
++        <div class="modal-content">
++            <div class="modal-header">
++                <h1 class="modal-title" id="titleModalDetalhes">Informações da Oferta</h1>
++                <!--data-bs-dismiss="modal" permite fechar a modal, o bootstrap controla-->
++                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
++            </div>
++            <div class="modal-body">
++                <div class="mb-4">
++                    <p class="labelDetalheOferta">Título do livro:</p>
++                    <p id="tituloLivro"></p> <!--Estes valores estamos a adicionar por javascript, no inicio.js na função eventosModalDetalhesOferta-->
++                </div>
++                <div class="mb-4">
++                    <p class="labelDetalheOferta">Tipo de oferta:</p>
++                    <p id="tipoOferta"></p>
++                </div>
++                <div>
++                    <p class="labelDetalheOferta">Dia da oferta:</p>
++                    <p id="diaOferta"></p>
++                </div>
++                <div>
++                    <p class="labelDetalheOferta">Nome do comprador:</p>
++                    <p id="nomeComprador"></p>
++                </div>
++            </div>
++            <div class="modal-footer">
++                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
++                <button type="button" class="btn btn-guardar-oferta">Contatar vendedor</button>
++                <!--Este botão ainda só esta visivel na modal, não faz nada ainda-->
++            </div>
++        </div>
++    </div>
++</div>
++</body>
+ </html>
+   
+\ No newline at end of file
+Index: public/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/index.html b/public/index.html
+--- a/public/index.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/index.html	(date 1684161038172)
+@@ -8,15 +8,12 @@
+   <link rel="stylesheet" href="/stylesheets/style.css">
+   <link rel="stylesheet" href="/stylesheets/common.css">
+   <script src="./javascripts/utils/verifications.js"></script>
+-  <script src="./javascripts/requests/matchesRequests.js"></script>
+   <script src="./javascripts/requests/usersRequests.js"></script>
+   <script src="./javascripts/login.js"></script>
+ </head>
+ 
+ <body>
+   <div class="container-login">
+-    <header>
+-      <h1</h1></header>
+     <div class="content-backgrund">
+       <div>
+       <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+Index: public/fotoperfil.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/fotoperfil.html b/public/fotoperfil.html
+--- a/public/fotoperfil.html	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/fotoperfil.html	(date 1684159425188)
+@@ -15,9 +15,9 @@
+             <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
+         </div>
+         <nav class="nav-menu">
+-            <a onclick="inicio()"> Inicio</a>
+-            <a onclick="mensagem()">Perfil </a>
+-            <a onclick="perfil()">Menssagens </a>
++            <a href="/inicio.html"> Inicio</a>
++            <a href="/Home.html">Perfil </a>
++            <a href="/profile.html">Mensagens </a>
+             <a onclick="logout()">Logout </a>
+         </nav>
+     </div>
+Index: public/javascripts/home.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/javascripts/home.js b/public/javascripts/home.js
+--- a/public/javascripts/home.js	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/javascripts/home.js	(date 1684163140314)
+@@ -12,10 +12,12 @@
+ }
+ 
+ 
++/*Aqui criamos o card dos livros, com capa, titulo, */
+ function populate(books){
+     let container = document.getElementById("livros");
+     for (let book of books) {
+         let containerLivros = document.createElement("div");
++        /*Estas classes são do bootstrap para fazer os cartões ajustarem-se a cada tamanho de ecrã*/
+         containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
+         let cardLivros = document.createElement("div");
+         containerLivros.appendChild(cardLivros);
+Index: public/stylesheets/banner.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/banner.css b/public/stylesheets/banner.css
+new file mode 100644
+--- /dev/null	(date 1684156664338)
++++ b/public/stylesheets/banner.css	(date 1684156664338)
+@@ -0,0 +1,44 @@
++
++/*Imagem dos livros no topo da página*/
++.banner-books {
++    width: 100%;
++    height: 300px;
++    padding-top: 3px;
++}
++
++/*Texto que fica sobreposto na imagem*/
++.banner-books-text {
++    color: #371818;
++    font-size: 2rem;
++    font-weight: bold;
++    position: absolute;
++    text-align: center;
++    padding-top: 20px;
++    width: 50%;
++    margin-left: auto;
++    margin-right: auto;
++    left: 0;
++    right: 0;
++}
++
++
++/*Estilos que são aplicados em ecrãs maiores que 576 pixeis */
++@media (min-width: 576px) {
++    .banner-books-text{
++        font-size: 2.5rem;
++        padding-top: 35px;
++    }
++    .banner-books {
++        height: 350px;
++    }
++}
++
++/*Estilos que são aplicados em ecrãs maiores que 870 pixeis, quando é maior que 870 aplica estes estilos e não os de cima */
++@media (min-width: 870px) {
++    .banner-books-text{
++        font-size: 3rem;
++    }
++    .banner-books {
++        height: 400px;
++    }
++}
+\ No newline at end of file
+Index: public/stylesheets/inicio.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/inicio.css b/public/stylesheets/inicio.css
+new file mode 100644
+--- /dev/null	(date 1684159345906)
++++ b/public/stylesheets/inicio.css	(date 1684159345906)
+@@ -0,0 +1,83 @@
++.adicionar-oferta-container {
++  border: #b08e6b 2px solid;
++  margin: 30px 0 60px;
++}
++
++/*pai do botão para adicionar oferta, display flex para usar o space between e manter o espaço entre o texto e botão */
++.adicionar-oferta-container > div {
++  display: flex;
++  flex-wrap: wrap;
++  justify-content: space-between;
++  align-items: center;
++  box-shadow: 15px 15px 0 0 #b08e6b;
++  padding: 20px;
++}
++
++/*Botão para adicionar oferta*/
++.adicionar-oferta-container > div > button {
++  background-color: #b08e6b;
++  color: white;
++}
++
++/*Texto para adicionar uma oferta*/
++.adicionar-oferta-container > div > p {
++  font-size: 24px;
++  font-weight: bold;
++}
++
++/*Estilo das duas modais*/
++.modal-content {
++  background-color: #b08e6b !important;
++  color: white;
++}
++/*Botão para guardar oferta da modal*/
++ .btn-guardar-oferta {
++   background-color: #7a5c3c !important;
++   color: white !important;
++ }
++
++ .btn-fotograria-oferta {
++   width: 100%;
++   padding: 0;
++   margin-bottom: 20px;
++ }
++
++.btn-fotograria-oferta>button {
++  width: 100%;
++  background: transparent;
++  color: white;
++  font-size: 18px;
++  border: white 2px solid;
++  padding: 5px;
++ }
++
++/*Botão para ver os detalhes de cada oferta, que está por baixo da capa do livro e titulo do livro*/
++.ver-detalhes-oferta {
++  background-color: transparent;
++  border: 0;
++  margin-top: 10px;
++  color: #7a5c3c;
++  display: flex;
++  gap: 10px;
++  align-items: center;
++  justify-content: center;
++}
++
++/*Adicionar a imagem da arrow que está à frente do "Ver detalhes"*/
++.ver-detalhes-oferta:after {
++  content: "";
++  display: inline-block;
++  vertical-align: middle;
++  width: 20px;
++  height: 20px;
++  background: url('/Images/arrow-detalhes.svg') 0 0 no-repeat;
++  background-size: contain;
++}
++
++/*Titulo de cada informação na modal*/
++.labelDetalheOferta {
++  margin-bottom: 0;
++  font-size: 24px;
++  font-weight: bold;
++}
++  
+Index: public/stylesheets/perfil.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/stylesheets/perfil.css b/public/stylesheets/perfil.css
+--- a/public/stylesheets/perfil.css	(revision d9d9df595366a3dc2e073228eb612a9972d80812)
++++ b/public/stylesheets/perfil.css	(date 1684158065834)
+@@ -17,12 +17,14 @@
+     background-color: #3e8e41;
+   }
+ 
++  /*imagem do topo do perfil*/
+ .profile-banner {
+     height: 350px;
+     width: 100%;
+     padding-top: 10px;
+     padding-bottom: 10px;
+ }
++/*div pai da imagem do perfil*/
+ .profile-avatar-container{
+     margin-top: -130px;
+     background: aliceblue;
+@@ -31,11 +33,13 @@
+     position: relative;
+     z-index: 2;
+ }
++/*imagem do perfil*/
+ .profile-image {
+     width: 150px;
+     height: 150px;
+     border-radius: 50%;
+ }
++/*nome do utilizador*/
+ .profile-name{
+     margin-top: -75px;
+     margin-left: 200px;
+@@ -43,6 +47,8 @@
+     font-size: 28px;
+     font-weight: bold;
+ }
++
++/*Div que vai recever todos os livros*/
+ .profile-container-livros{
+     margin-top: 70px;
+ }
+\ No newline at end of file

@@ -26,7 +26,7 @@ async function logout() {
 async function inicio() {
     try {
 
-        window.location.pathname = "/inicio.html"
+        window.location.pathname = "/Home.html"
     } catch (err) {
         console.log(err);
        // alert("Something is not working");
@@ -36,7 +36,7 @@ async function inicio() {
 
 async function mensagem() {
     try {
-        window.location.pathname = "/Home.html"
+        window.location.pathname = "/inicio.html"
     } catch (err) {
         console.log(err);
        // alert("Something is not working");
