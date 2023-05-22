@@ -2,88 +2,29 @@ window.onload = async function () {
     try {
         let result = await getUserAndOffer();
         if (result.err) {  throw result.err; }
-        window.user = user;
-        buildResults(result.resultOferta.oferta, user);
-        //document.getElementById('user').textContent =window.user.name;
+        buildResults(result.resultOferta.oferta);
      } catch (err) {
         console.log(err);
        // alert("Something went wrong!")
     }
 }
 
-async function logout() {
-    try {
-        let result = await requestLogout();
-        if (!result.successful || result.err)
-            throw result.err || { err: "Not successfull" }
-        window.location.pathname = "/index.html"
-    } catch (err) {
-        console.log(err);
-       // alert("Something is not working");
-    }
-}
-
-async function inicio() {
-    try {
-
-        window.location.pathname = "/inicio.html"
-    } catch (err) {
-        console.log(err);
-       // alert("Something is not working");
-    }
-}
-
-
-async function mensagem() {
-    try {
-        window.location.pathname = "/Home.html"
-    } catch (err) {
-        console.log(err);
-       // alert("Something is not working");
-    }
-}
-
-async function perfil() {
-    try {
-        window.location.pathname = "/profile.html"
-    } catch (err) {
-        console.log(err);
-       // alert("Something is not working");
-    }
-}
-
-
-
-async function addItem() {
-    let slId = sessionStorage.getItem("shoplistId");
-    let prodId = parseInt(document.getElementById("prodId").value);
-    let quant = parseFloat(document.getElementById("quant").value);
-    let res = await requestAddItem(slId,prodId,quant,2);
-    if (res.successful) {
-        let container = document.getElementById("items");
-        // Incorrect, should not user innerHTML (TODO)
-        container.innerHTML = "";      
-        res = await requestUserShoplist(slId);
-        populateItems(res.shoplist.items);
-        alert("Inserted!");
-    } else {
-        alert("Error!");
-    }
-}
-
-function buildResults(offer, user) {
+/*Aqui adiciona o nome do utilizador, indo ao storage buscar esta informação e depois cria os cards com os livros na buildBooks*/
+function buildResults(offer) {
     var profileName = document.getElementById("profile-name");
+    let user = JSON.parse(localStorage.getItem("user"));
     profileName.textContent = user.name;
     if (offer && offer.length) buildBooks(offer);
 }
 
 
-
+/*Cria os cads com os livros para o perfil*/
 function buildBooks(books){
     console.log(books);
     let container = document.getElementById("livros");
     for (let book of books) {
         let containerLivros = document.createElement("div");
+        // classes bootstrap para ter design responsivo para os cards dos livros
         containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
         let cardLivros = document.createElement("div");
         let date = document.createElement("span");

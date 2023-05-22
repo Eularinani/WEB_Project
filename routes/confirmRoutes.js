@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require("../middleware/auth");
-const Livro = require("../models/livrosModel.js");
+const Comfirm = require("../models/confirmModel.js");
 const { Result } = require('express-validator');
 
 router.post('', async function (req, res, next) {
@@ -41,7 +41,7 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
 
 
 // livros para a select box para poder fazer o formulario
-router.get('/titulos',  async function (req, res, next) {
+router.get('',  async function (req, res, next) {
     try {
         console.log("Get all livros");
         let result = await Livro.getTitulo();

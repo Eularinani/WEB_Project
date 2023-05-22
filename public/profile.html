@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/card-livros.css">
     <script src="./javascripts/utils/verifications.js"></script>
     <script src="./javascripts/requests/usersRequests.js"></script>
+    <script src="./javascripts/shared.js"></script>
     <script src="./javascripts/profile.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -20,14 +21,14 @@
 <header>
     <div class="container">
         <div class="logo">
-            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
-        </div>
-        <nav class="nav-menu">
-            <a onclick="inicio()"> Inicio</a>
-            <a onclick="mensagem()">Perfil </a>
-            <a onclick="perfil()">Menssagens </a>
-            <a onclick="logout()">Logout </a>
-        </nav>
+            <a href="/Home.html"><img id="logo2" src="./Images/Logos-09.png" alt="Buy and change"></a>  
+          </div>
+          <nav class="nav-menu">
+              <a href="/inicio.html"> Inicio</a>
+              <a href="/profile.html">Perfil </a>
+              <a href="/Home.html">Mensagens </a>
+              <a onclick="logout()">Logout </a>
+          </nav>
     </div>
 </header>
 <main>
@@ -39,14 +40,16 @@
       <div class="profile-avatar-container">
           <img class="profile-image" src="./Images/avatar.png" alt="Imagem de perfil">
       </div>
-          <p class="profile-name" id="profile-name"></p>
+          <p class="profile-name" id="profile-name"></p><!-- o nome do utilizador é adicionado no ficheiro profile.js na fnção buildResults-->
       </div>
 
   </section>
     <section class="container">
         <div class="profile-container-livros">
             <h1>Os meus livros</h1>
-            <div id="livros"></div>
+            <div id="livros">
+                <!--todos os livros são adicionados no profile.js na função buildBooks -->
+            </div>
         </div>
     </section>
 </main>

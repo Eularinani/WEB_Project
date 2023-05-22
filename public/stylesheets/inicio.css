@@ -1,0 +1,83 @@
+.adicionar-oferta-container {
+  border: #b08e6b 2px solid;
+  margin: 30px 0 60px;
+}
+
+/*pai do botão para adicionar oferta, display flex para usar o space between e manter o espaço entre o texto e botão */
+.adicionar-oferta-container > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 15px 15px 0 0 #b08e6b;
+  padding: 20px;
+}
+
+/*Botão para adicionar oferta*/
+.adicionar-oferta-container > div > button {
+  background-color: #b08e6b;
+  color: white;
+}
+
+/*Texto para adicionar uma oferta*/
+.adicionar-oferta-container > div > p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/*Estilo das duas modais*/
+.modal-content {
+  background-color: #b08e6b !important;
+  color: white;
+}
+/*Botão para guardar oferta da modal*/
+ .btn-guardar-oferta {
+   background-color: #7a5c3c !important;
+   color: white !important;
+ }
+
+ .btn-fotograria-oferta {
+   width: 100%;
+   padding: 0;
+   margin-bottom: 20px;
+ }
+
+.btn-fotograria-oferta>button {
+  width: 100%;
+  background: transparent;
+  color: white;
+  font-size: 18px;
+  border: white 2px solid;
+  padding: 5px;
+ }
+
+/*Botão para ver os detalhes de cada oferta, que está por baixo da capa do livro e titulo do livro*/
+.ver-detalhes-oferta {
+  background-color: transparent;
+  border: 0;
+  margin-top: 10px;
+  color: #7a5c3c;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Adicionar a imagem da arrow que está à frente do "Ver detalhes"*/
+.ver-detalhes-oferta:after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  background: url('/Images/arrow-detalhes.svg') 0 0 no-repeat;
+  background-size: contain;
+}
+
+/*Titulo de cada informação na modal*/
+.labelDetalheOferta {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+  

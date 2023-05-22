@@ -17,12 +17,14 @@
     background-color: #3e8e41;
   }
 
+  /*imagem do topo do perfil*/
 .profile-banner {
     height: 350px;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
+/*div pai da imagem do perfil*/
 .profile-avatar-container{
     margin-top: -130px;
     background: aliceblue;
@@ -31,11 +33,13 @@
     position: relative;
     z-index: 2;
 }
+/*imagem do perfil*/
 .profile-image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
+/*nome do utilizador*/
 .profile-name{
     margin-top: -75px;
     margin-left: 200px;
@@ -43,6 +47,8 @@
     font-size: 28px;
     font-weight: bold;
 }
+
+/*Div que vai recever todos os livros*/
 .profile-container-livros{
     margin-top: 70px;
 }

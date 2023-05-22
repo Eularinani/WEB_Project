@@ -5,15 +5,15 @@
     <title> Shop Lists </title>
     <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./stylesheets/perfil.css">
     <script src="./javascripts/utils/verifications.js"></script>
     <script src="./javascripts/requests/usersRequests.js"></script>
     <script src="./javascripts/requests/livrosRequests.js"></script>
-    <script src="./javascripts/profile.js"></script>
+    <script src="./javascripts/shared.js"></script>
     <script src="./javascripts/home.js"></script>
-    <link rel="stylesheet" href="./stylesheets/sid.css">
     <link rel="stylesheet" href="stylesheets/common.css">
     <link rel="stylesheet" href="stylesheets/card-livros.css">
+    <link rel="stylesheet" href="stylesheets/banner.css">
+
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -25,14 +25,14 @@
 <header>
     <div class="container">
         <div class="logo">
-            <img id="logo2" src="./Images/Logos-09.png" alt="Buy and change">
-        </div>
-        <nav class="nav-menu">
-            <a onclick="inicio()"> Inicio</a>
-            <a onclick="mensagem()">Perfil </a>
-            <a onclick="perfil()">Menssagens </a>
-            <a onclick="logout()">Logout </a>
-        </nav>
+            <a href="/Home.html"><img id="logo2" src="./Images/Logos-09.png" alt="Buy and change"></a>  
+          </div>
+          <nav class="nav-menu">
+              <a href="/inicio.html"> Inicio</a>
+              <a href="/profile.html">Perfil </a>
+              <a href="/Home.html">Mensagens </a>
+              <a onclick="logout()">Logout </a>
+          </nav>
     </div>
 </header>
 <main>
@@ -44,9 +44,12 @@
 
     </div>
     <section class="container">
-        <div id="livros" class="row"></div>
+        <div id="livros" class="row">
+            <!--Os livros estão a ser adicionados aqui por javascript-->
+        </div>
     </section>
 </main>
+<!--Rodapé-->
 <footer>
     <div class="footer-content">
         Informação sobre o site pode ser adicionada aqui.

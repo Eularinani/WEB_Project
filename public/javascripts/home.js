@@ -12,10 +12,12 @@ window.onload = async function () {
 }
 
 
+/*Aqui criamos o card dos livros, com capa, titulo, */
 function populate(books){
     let container = document.getElementById("livros");
     for (let book of books) {
         let containerLivros = document.createElement("div");
+        /*Estas classes são do bootstrap para fazer os cartões ajustarem-se a cada tamanho de ecrã*/
         containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
         let cardLivros = document.createElement("div");
         containerLivros.appendChild(cardLivros);

@@ -1,17 +1,21 @@
 
-/*Estilos dos cartões dos livros, como penso que vão ter estes cartões em mais páginas, assim é só usar as mesmas classes no html em todos o lados, e é só importar este ficheiro onde tiverem mais cards dos livros */
+/*Estilos dos cartões dos livros, só precisamos importar este ficheiro onde tivermos mais cards dos livros */
+
+/* div pai dos cartões*/
 .livros-card{
     display: flex;
-    flex: 0 0 auto;
-    width: 100%;
     margin-bottom: 30px;
 }
+
+/*imagem do livro*/
 .livros-card>div>img {
     max-width: calc(100% - 20px);
     height: 300px;
     flex-shrink: 0;
     margin: auto;
 }
+
+/*div filha do container para aplicar os paddings, margins, alinhar os elementos em forma de coluna*/
 .livros-card>div {
     border: 1px solid #ccc;
     padding: 20px;
@@ -24,6 +28,7 @@
 
 }
 
+/*titulo do livro no card, por baixo da capa do livro*/
 .livros-card>div>div>span {
     margin-bottom: 10px;
     margin-top: 20px;
@@ -31,6 +36,7 @@
     font-weight: bold;
 }
 
+/*div que contém o titulo do livro, height 100 para que todos os cartões sejam da mesma altura e equilibrados*/
 .livros-card>div>div {
     height: 100%;
     display: flex;
@@ -40,12 +46,12 @@
 }
 
 #livros {
-    display: flex;
-    flex-wrap: wrap;
     padding-bottom: 50px;
     margin-top: 30px;
 }
 
+
+/*Estilo aplicado em ecrãs maiores de 576 px*/
 @media (min-width: 576px) {
     .livros-card>div{
         margin: 0 !important;

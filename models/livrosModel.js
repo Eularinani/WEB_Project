@@ -58,9 +58,10 @@ static async getbooks() {
 //buscando todos titulos 
 static async getTitulo() {
     try {
-        let dbResult = await pool.query("select titulo from livro");
+        let dbResult = await pool.query("select titulo, livro_id from livro");
         let dbbooks = dbResult.rows;
         let book = [];
+        console.log("dbbooks",dbbooks);
         for (let dbbook of dbbooks) {
             book.push(dbLivroToLivro(dbbook));
         }

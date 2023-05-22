@@ -1,0 +1,44 @@
+
+/*Imagem dos livros no topo da página*/
+.banner-books {
+    width: 100%;
+    height: 300px;
+    padding-top: 3px;
+}
+
+/*Texto que fica sobreposto na imagem*/
+.banner-books-text {
+    color: #371818;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    padding-top: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+
+/*Estilos que são aplicados em ecrãs maiores que 576 pixeis */
+@media (min-width: 576px) {
+    .banner-books-text{
+        font-size: 2.5rem;
+        padding-top: 35px;
+    }
+    .banner-books {
+        height: 350px;
+    }
+}
+
+/*Estilos que são aplicados em ecrãs maiores que 870 pixeis, quando é maior que 870 aplica estes estilos e não os de cima */
+@media (min-width: 870px) {
+    .banner-books-text{
+        font-size: 3rem;
+    }
+    .banner-books {
+        height: 400px;
+    }
+}

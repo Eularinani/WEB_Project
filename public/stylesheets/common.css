@@ -1,6 +1,6 @@
 
 
-/*Estilos do Header, assim se tiverem de alterar, só alteram num lugar, e não em todos os ficheiros CSS*/
+/*Estilos do Header, podemos importar este ficheiro em todas as páginas*/
 header {
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@ header {
     background: #b08e6b;
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: 1000;
 }
 header>div {
     display: flex;
@@ -30,6 +30,7 @@ header>div>nav{
     color: #ffffff;
 }
 
+/*Estilos para cada opção do menu*/
 .nav-menu>a {
     display: flex;
     padding: 1%;
@@ -39,6 +40,13 @@ header>div>nav{
     border-radius: 20%;
     cursor: pointer;
     margin: 10px;
+    text-decoration: none;
+}
+
+/*estilos para quando passamos o rato por cima das opções do menu*/
+.nav-menu>a:hover {
+    background-color: #7a5c3c;
+    color: #ffffff;
 }
 
 /*O proprio logo*/
@@ -46,13 +54,15 @@ header>div>.logo img {
     height: 70px;
 }
 
+/*Rodapé no fim da página*/
 footer {
     height: 500px;
-    margin-top: -250px;
+    margin-top: -250px; /*margem negativa para ficar metade por cima da última linha de filmes*/
     width: 100%;
     background-color: #b08e6b;
 }
 
+/*Div onde vamos ter os links do rodapé*/
 footer>.footer-content{
     padding-top: 300px;
     font-size: 3rem;

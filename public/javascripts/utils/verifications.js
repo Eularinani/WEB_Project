@@ -8,19 +8,17 @@ function changePage(url,msg,verbose) {
 // Otherwise it will set the window.user with the user profile
 async function getUserAndOffer() {
     try {
-        let result = await requestProfile();
+        let user = JSON.parse(localStorage.getItem("user"));
         let resultOferta;
-        if (result && result.user) {
-            resultOferta = await requestOferta(2);
+
+        if (user) {
+            resultOferta = await requestOferta(user.id);
         }
         else {
             return {successful: false};
         }
-        if (result.unauthenticated)
+        if (!user)
             changePage("index.html","Not authenticated. Going to login page");
-        else if (!result.successful || result.err) 
-            throw err || "Not successful";
-        else window.user = result.user;
         return {successful: true, resultOferta};
     } catch (err) {
         console.log(err);

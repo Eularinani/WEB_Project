@@ -45,19 +45,30 @@ INSERT INTO Autor (Autor_nome) VALUES ('Ben Carson');
 INSERT INTO Autor (Autor_nome) VALUES ('Nikita Gill');
 
 
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('11', '1');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('12', '2');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('13', '3');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('14', '4');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('15', '5');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('16', '6');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('17', '7');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('18', '8');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('19', '9');
+INSERT INTO Autor_Livro (Autor_Livro_Autor_id, Autor_Livro_livro_id) VALUES ('20', '10');
 
 
 
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES ('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','3');
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES ('Troca de livro', 'foto_livro2.jpg', '2', '2022-04-16','6');
+INSERT INTO  (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES ('1', '1', '1');
 
 
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15');
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro2.jpg', '2', '2022-04-16');
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro', 'foto_livro3.jpg', '3', '2022-04-17');
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro4.jpg', '4', '2022-04-18');
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Venda de livro´, 'foto_livro5.jpg', ‘5’, '2022-02-15);
-INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia, Oferta_contaP) VALUES ('Troca de livro', 'foto_livro6.jpg', ‘6, '2022-10-17');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','3');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Troca de livro', 'foto_livro2.jpg','2', '2022-04-16','6');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','4');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','5');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','6');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','7');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','8');
+INSERT INTO Oferta (Oferta_nome, Oferta_foto, Oferta_user_Id, Oferta_Dia,oferta_Livro_id) VALUES('Venda de livro', 'foto_livro.jpg', '1', '2022-04-15','9');
 
 
 
@@ -70,11 +81,27 @@ INSERT INTO Troca (TL_Trasancao_id, TL_Livro_id, TL_oferta_id) VALUES (‘6’, 
 
 
 
-
+//
 select  usr_name,usr_foto,Oferta_nome, Oferta_foto,Oferta_Dia,Titulo, Livr_capa,Livro_Volume 
                 FROM appuser
                 INNER JOIN oferta on appuser.usr_id =oferta.oferta_user_id
                 INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+//
+select Oferta_id,Oferta_nome,Oferta_Dia,Titulo ,Livr_capa,usr_name 
+from oferta
+INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+//
+INSERT INTO Transacao (Transacao_nome, Transacao_Usuario_id, Transacao_Oferta_id) VALUES ('Compra de livro', '1', '1');
+				
+				select Oferta_nome,Oferta_foto,Oferta_Dia, Titulo ,Livr_capa , Livro_Volume,Transacao_nome 
+				from oferta
+				INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
+				INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id
+				INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
+				WHERE oferta_id =1
+
+
 
                 ALTER TABLE Livro
 DROP COLUMN livr_capa;

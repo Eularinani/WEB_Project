@@ -42,16 +42,6 @@ class Ofert{
     //add ofertas
     static async addofert(oferta){
             try {
-                let dbResult =
-                    await pool.query("Select * from oferta where Oferta_id=$1", [oferta.id]);
-                let dbofertas = dbResult.rows;
-                if (dbofertas.length)
-                    return {
-                        status: 400, result: [{
-                            location: "body", param: "id",
-                            msg: "Essa oferta já foi feita"
-                        }]
-                    }; 
                 dbResult = await pool.query(`Insert into oferta ((Oferta_nome, Oferta_foto,Oferta_livro_id,Oferta_user_id, Oferta_Dia)
                         values ($1,$2,$3,$4,$5)`, [oferta.name, oferta.foto, oferta.livro_id, oferta.user_id, oferta.dia]);
                 return { status: 200, result: {msg:"A sua Oferta foi feita"}} ;
@@ -96,27 +86,31 @@ class Ofert{
     static async getEncomendaOFERTA(ofertaID) {
         try {
             let dbItems = await pool.query(
-                `select  Oferta_nome,Oferta_Dia,Titulo,Livr_capa,usr_name,Transacao_nome
+                `select  Oferta_nome,Oferta_Dia,Titulo,Livr_capa,usr_name
                 FROM oferta
                 INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
                 INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
-                INNER JOIN transacao on oferta.oferta_id=transacao.Transacao_Oferta_id
                 WHERE oferta_id = $1`,  [ofertaID]);
-            let dbItem = dbItems.rows;
-            if(!dbItem.length)
+            let dbItem = dbItems.rows && dbItems.rows.length && dbItems.rows[0];
+            console.log(dbItems)
+            console.log("ofeerta")
+            console.log(dbItem);
+            if(!dbItem)
                 return {
                     status: 400, result: [{
                         location: "body", param: "id",
                         msg: "Essa oferta já foi feita"
                     }]
                 }; 
-            let ofertas;
+            let ofertas ={};
             ofertas.nome = dbItem.oferta_nome;
             ofertas.dia = dbItem.oferta_dia;
             ofertas.titulo = dbItem.titulo;
             ofertas.capa = dbItem.livr_capa;
             ofertas.nome_utilizador = dbItem.usr_name;
-            ofertas.nome_transacao = dbItem.transacao.nome;
+            // ofertas.nome_transacao = dbItem.transacao.nome;
+
+            console.log("ofertas", ofertas)
             return {status:200, result: ofertas};
 
         } catch (err) {
@@ -127,14 +121,15 @@ class Ofert{
 
 
     //lista de oferttas 
-    static async getofert(){
+    static async getofertaOld(){
         try {
             let dbResult = await pool.query("Select * from Oferta");
             let dbofertas = dbResult.rows;
             let ofertas = [];
-            for (let dbofer of dbofertas) {
+            console.log(ofertas);
+/*            for (let dbofer of dbofertas) {
                 ofertas.push(dbProdToProd(dbofer));
-            }
+            }*/
             return {status:200, result: ofertas};
         } catch (err) {
             console.log(err);
@@ -148,18 +143,19 @@ class Ofert{
 
 
      //lista de oferttas para pagina inicial
-     static async getofert(){
+    static async getofert(){
         try {
             let dbResult = await pool.query('select Oferta_id,Oferta_nome,Oferta_Dia,Titulo ,Livr_capa,usr_name '+ 
             'from oferta '+
             'INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id '+
             'INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id');
             let dbofertas = dbResult.rows;
+            console.log(dbofertas);
             let ofertas = [];
             for (let dbofer of dbofertas) {
-                ofertas.push(dbProdToProd(dbofer));
+                ofertas.push(dbOfertaTooferta(dbofer));
             }
-            return {status:200, result: ofertas};
+            return {status:200, result: ofertas || []};
         } catch (err) {
             console.log(err);
             return {status: 500, result: {msg: "ofertas não encotradas"}};
