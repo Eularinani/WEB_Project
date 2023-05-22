@@ -8,7 +8,7 @@ function changePage(url,msg,verbose) {
 // Otherwise it will set the window.user with the user profile
 async function getUserAndOffer() {
     try {
-        let user = JSON.parse(localStorage.getItem("user"));
+        let user = JSON.parse(sessionStorage.getItem("user"));
         let resultOferta;
 
         if (user) {

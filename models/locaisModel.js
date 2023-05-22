@@ -1,7 +1,11 @@
 const pool = require("../config/database");
 
 function dbLocalTolocal (DBLoc) {
-    return new Local(local.local_id,local.Local_raio,local.local_endereco);
+    let local = new Local();
+    local.id = DBLoc.local_id;
+    local.distrito = DBLoc.local_endereco;
+    local.zona = DBLoc.local_raio;
+    return local;
 }
 
 class Local{

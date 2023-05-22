@@ -6,13 +6,13 @@ module.exports.verifyAuth = async function (req, res, next) {
     try {
         let token = req.session.token;
         if (!token) {
-            res.status(401).send({ msg: "Please log in." });
-            return;
+
+            return res.status(401).send({ msg: "Please log in." });
         }
         let result = await User.getUserByToken(token);
         if (result.status != 200) {
-            res.status(result.status).send(result.result);
-            return;
+
+            return res.status(result.status).send(result.result);
         }
          req.user = result.result;
         // Each time it changes the cookie expiration will be refreshed

@@ -8,8 +8,8 @@ const { Result } = require('express-validator');
 // livros para a select box para poder fazer o formulario
 router.get('',  async function (req, res, next) {
     try {
-        console.log("Get all livros");
-        let result = await Locais.Locais();
+        console.log("Get all locais");
+        let result = await Locais.getLocais();
         res.status(result.status).send(result.result);
     } catch (err) {
         console.log(err);

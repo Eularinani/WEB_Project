@@ -1,18 +1,27 @@
 window.onload = async function () {
     try {
-        /*Buscar todas as ofertas*/
-        let result = await getDataInicio();
-        const payload = result && result.oferta || [];
-        /*Criar os cards das ofertas com o livro*/
-        buildInicio(payload);
-        /**/
-        getNomeLivrosParaModal();
-        submitFormlarioOfertaModal();
 
-        if (result.err) {  throw result.err; }
+        let user = JSON.parse(sessionStorage.getItem("user"));
+        let resultOferta;
 
-        console.log("getDataInicio loading");
-        //buildResults(result.resultOferta.oferta, user);
+        if (user) {
+            /*Buscar todas as ofertas*/
+            let result = await getDataInicio();
+            const payload = result && result.oferta || [];
+            /*Criar os cards das ofertas com o livro*/
+            buildInicio(payload);
+            /**/
+            getNomeLivrosParaModal();
+            submitFormlarioOfertaModal();
+
+            if (result.err) {
+                throw result.err;
+            }
+
+            console.log("getDataInicio loading");
+            //buildResults(result.resultOferta.oferta, user);
+        } else window.location.pathname = 'index.html';
+
     } catch (err) {
         console.log(err);
         // alert("Something went wrong!")
@@ -25,9 +34,11 @@ async function getDataInicio() {
         console.log("-------------------------------------------------------");
         console.log("request inicio", response);
         var result = await response.json();
-        return { successful: response.status == 200,
+        return {
+            successful: response.status == 200,
             unauthenticated: response.status == 401,
-            oferta: result};
+            oferta: result
+        };
     } catch (err) {
         // Treat 500 errors here
         console.log(err);
@@ -39,54 +50,57 @@ async function getDataInicio() {
 function buildInicio(books) {
     console.log(books);
     let container = document.getElementById("inicio-ofertas");
+    // Aqui garantimos que antes de adicionar as ofertas à página inicio, não temos lá já duplicadas.
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
 
     if (books && books.length) {
-    for (let book of books) {
-        let containerLivros = document.createElement("div");
-        // classes bootstrap para ter design responsivo para os cards dos livros
-        containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
-        let cardLivros = document.createElement("div");
-        containerLivros.appendChild(cardLivros);
-        let img = document.createElement("img");
-        if (book.imagem_livro) {
-            img.src = book.imagem_livro;
-            img.loading = "lazy"; // carrega só as imagens quando ficam visiveis no ecrã
-            img.alt = `Capa do livro ${book.titulo}`;
-        } else {
-            img.src = "/images/logo.png";
-            img.loading = "lazy";
-            img.alt = `Capa do livro ${book.titulo}`;
+        for (let book of books) {
+            let containerLivros = document.createElement("div");
+            // classes bootstrap para ter design responsivo para os cards dos livros
+            containerLivros.classList.add('col-sm-6', 'col-md-4', 'col-xl-3', 'mb-4', 'livros-card');
+            let cardLivros = document.createElement("div");
+            containerLivros.appendChild(cardLivros);
+            let img = document.createElement("img");
+            if (book.imagem_livro) {
+                img.src = book.imagem_livro;
+                img.loading = "lazy"; // carrega só as imagens quando ficam visiveis no ecrã
+                img.alt = `Capa do livro ${book.titulo}`;
+            } else {
+                img.src = "/images/logo.png";
+                img.loading = "lazy";
+                img.alt = `Capa do livro ${book.titulo}`;
+            }
+            cardLivros.appendChild(img);
+
+            // For the section
+            let containerTitulo = document.createElement("div");
+            let nomeLivro = document.createElement("span");
+            containerTitulo.appendChild(nomeLivro);
+
+            nomeLivro.textContent = book.titulo;
+            cardLivros.appendChild(containerTitulo);
+
+            // extra for view details
+            let verDetalhes = document.createElement("button");
+            const idForButton = "ver-detalhes-oferta" + book.id;
+            verDetalhes.setAttribute("id", idForButton);
+            verDetalhes.classList.add("ver-detalhes-oferta");
+            verDetalhes.textContent = "Ver detalhes";
+            cardLivros.appendChild(verDetalhes);
+            let idOferta = document.createElement("div");
+            idOferta.setAttribute("data-id", book.id);
+            idOferta.setAttribute("id", "idOferta");
+            idOferta.setAttribute("hidden", true);
+
+            verDetalhes.appendChild(idOferta);
+            container.appendChild(containerLivros);
+
+            eventosModalDetalhesOferta(idForButton);
+
         }
-        cardLivros.appendChild(img);
-
-        // For the section
-        let containerTitulo = document.createElement("div");
-        let nomeLivro = document.createElement("span");
-        containerTitulo.appendChild(nomeLivro);
-
-        nomeLivro.textContent = book.titulo;
-        cardLivros.appendChild(containerTitulo);
-
-        // extra for view details
-        let verDetalhes = document.createElement("button");
-        const idForButton = "ver-detalhes-oferta"+book.id;
-        verDetalhes.setAttribute("id", idForButton);
-        verDetalhes.classList.add("ver-detalhes-oferta");
-        verDetalhes.textContent = "Ver detalhes";
-        cardLivros.appendChild(verDetalhes);
-        let idOferta = document.createElement("div");
-        idOferta.setAttribute("data-id", book.id);
-        idOferta.setAttribute("id", "idOferta");
-        idOferta.setAttribute("hidden", true);
-
-        verDetalhes.appendChild(idOferta);
-        container.appendChild(containerLivros);
-
-        eventosModalDetalhesOferta(idForButton);
-
-    }
-    } else
-    {
+    } else {
         let noBooks = document.createElement("p");
         container.appendChild(noBooks);
     }
@@ -130,8 +144,11 @@ async function getNomeLivrosParaModal() {
         try {
             /*Chamada para ir buscar as opções dos livros para a modal, para o select option*/
             const response = await fetch(`/api/livros/titulos`);
-            console.log("request titulos", response);
+            /*Chamada para ir buscar as opções dos locais para a modal, para o select option*/
+            const responseLocalizacao = await fetch(`/api/locais`);
+            console.log("request locais", responseLocalizacao);
             var books = await response.json();
+            var locais = await responseLocalizacao.json();
 
             if (books && books.length) {
                 const selectListaLivros = document.getElementById("opcoesLivros");
@@ -142,6 +159,18 @@ async function getNomeLivrosParaModal() {
                     option.text = book.titulo;
                     option.value = book.id;
                     selectListaLivros.add(option, 0);
+                }
+
+            }
+            if (locais && locais.length) {
+                const selectListaLocais = document.getElementById("inputLocalizacao");
+
+                /*Aqui estamos a adicionar todos os locais à modal, que são devolvidos pelo query*/
+                for (const local of locais) {
+                    var option = document.createElement('option');
+                    option.text = local.distrito;
+                    option.value = local.distrito;
+                    selectListaLocais.add(option, 0);
                 }
 
             }
@@ -156,18 +185,58 @@ async function getNomeLivrosParaModal() {
 }
 
 /*Evento para escutar quando clicamos no botão de submeter uma oferta*/
-function submitFormlarioOfertaModal(){
+function submitFormlarioOfertaModal() {
     const form = document.getElementById("form-oferta");
-    form.addEventListener("submit", function(e) {
+    form.addEventListener("submit", function (e) {
         console.log("formulario");
         e.preventDefault();
 
         const localizacao = document.getElementById("inputLocalizacao").value;
         const tipoOperacao = document.getElementById("inputOperacao").value;
-        const livros = document.getElementById("opcoesLivros").value;
-        console.log(localizacao, tipoOperacao, livros)
+        const livro = document.getElementById("opcoesLivros").value;
+        // data atual, o .toISOString() é para fazer que tenha este formato "2022-04-14T23:00:00.000Z" que é o que está na bd
+        const dataAtual = new Date().toISOString();
+        const user = JSON.parse(sessionStorage.getItem("user"));
+
+        console.log(localizacao, tipoOperacao, livro, dataAtual, user.id)
+        sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user.id);
 
         // aqui tem de ser chamada a rota com o POST para quardar os dados que já estão acima, que vêm do formulário
     })
 }
 
+async function sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user) {
+    try {
+        const payload = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+                Oferta_nome: tipoOperacao,
+                Oferta_Dia: dataAtual,
+                Oferta_user_id: user,
+                Oferta_livro_id: livro
+            })
+        };
+        const response = await fetch(`/api/ofertas/guardar`, payload);
+        if (response.status === 200) {
+            var myModalEl = document.getElementById('modalRegistrar')
+            const modal = bootstrap.Modal.getInstance(myModalEl);
+            modal.hide();
+
+            var myToaster = document.getElementById('toaster')
+            const toaster = new bootstrap.Toast(myToaster)
+            toaster.show();
+            let result = await getDataInicio();
+            const payload = result && result.oferta || [];
+            /*Criar os cards das ofertas com o livro*/
+            buildInicio(payload);
+        }
+    } catch (err) {
+        // Treat 500 errors here
+        console.log(err);
+        return {err: err};
+    }
+}

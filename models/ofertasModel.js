@@ -40,10 +40,13 @@ class Ofert{
     }
     
     //add ofertas
-    static async addofert(oferta){
+    static async addofert(ofertaDados){
             try {
-                dbResult = await pool.query(`Insert into oferta ((Oferta_nome, Oferta_foto,Oferta_livro_id,Oferta_user_id, Oferta_Dia)
-                        values ($1,$2,$3,$4,$5)`, [oferta.name, oferta.foto, oferta.livro_id, oferta.user_id, oferta.dia]);
+                console.log("ola 1111");
+                console.log(ofertaDados);
+                const dbResult = await pool.query(`Insert into oferta (Oferta_nome, Oferta_foto,Oferta_livro_id,Oferta_user_id, Oferta_Dia)
+                        values ($1,$2,$3,$4,$5)`, [ofertaDados.nome, ofertaDados.foto, ofertaDados.livro_id, ofertaDados.user_id, ofertaDados.dia]);
+
                 return { status: 200, result: {msg:"A sua Oferta foi feita"}} ;
             } catch (err) {
                 console.log(err);
@@ -55,10 +58,9 @@ class Ofert{
     static async getUserofertas(userId) {
         try {
             let dbResult = await pool.query(
-                'SELECT Oferta_nome, Oferta_foto, Oferta_Dia, Titulo, Livr_capa, Livro_Volume, Transacao_nome, Livro_id, usr_id, oferta_id '+
+                'SELECT Oferta_nome, Oferta_foto, Oferta_Dia, Titulo, Livr_capa, Livro_Volume,Livro_id, usr_id, oferta_id '+
                 'FROM oferta '+
                 'INNER JOIN livro ON oferta.oferta_livro_id = livro.livro_id '+
-                'INNER JOIN transacao ON oferta.oferta_id = transacao.Transacao_Oferta_id '+
                 'INNER JOIN appuser ON oferta.oferta_user_id = appuser.usr_id '+
                 'WHERE oferta.oferta_user_id = $1', [userId]);
             let dbOfertas = dbResult.rows;

@@ -12,7 +12,7 @@ window.onload = async function () {
 /*Aqui adiciona o nome do utilizador, indo ao storage buscar esta informação e depois cria os cards com os livros na buildBooks*/
 function buildResults(offer) {
     var profileName = document.getElementById("profile-name");
-    let user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(sessionStorage.getItem("user"));
     profileName.textContent = user.name;
     if (offer && offer.length) buildBooks(offer);
 }

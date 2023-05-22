@@ -84,7 +84,7 @@ async function requestProfile() {
 }
 async function requestOferta(user_id) {
     try {
-        const response = await fetch(`/api/ofertas/auth/${user_id}`);
+        const response = await fetch(`/api/ofertas/perfil/auth/${user_id}`);
         console.log("-------------------------------------------------------");
         console.log("request Oferta", response);
         var result = await response.json();

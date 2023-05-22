@@ -27,13 +27,22 @@
         </div>
         <nav class="nav-menu">
             <a href="/inicio.html"> Inicio</a>
-            <a href="/Home.html">Perfil </a>
+            <a href="/profile.html">Perfil </a>
             <a href="/profile.html">Mensagens </a>
-            <a onclick="logout()">Logout </a>
+            <a href="/index.html" id="login-option">Login</a>
+            <a onclick="logout()" id="logout-option">Logout</a>
         </nav>
     </div>
 </header>
 <main>
+    <div id="toaster" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Oferta registada com sucesso!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
     <!--    <form>
           <input type="text" placeholder="Pesquisar...">
           <button type="submit">Buscar</button>
@@ -82,15 +91,22 @@
             <div class="modal-body">
                 <form id="form-oferta">
                     <div class="btn-fotograria-oferta">
-                        <button>Carregar imagem</button>
+                        <button type="button">Carregar imagem</button>
                     </div>
                     <div class="mb-3">
                         <label for="inputOperacao" class="form-label">Tipo operação</label>
-                        <input type="text" class="form-control" id="inputOperacao">
+                        <select class="form-select form-select-lg mb-3" id="inputOperacao">
+                            <option value="Compra">Compra</option>
+                            <option value="Venda">Venda</option>
+                        </select>
+                        <!--<input type="text" class="form-control" id="inputOperacao" required>-->
                     </div>
                     <div class="mb-3">
                         <label for="inputLocalizacao" class="form-label">Localização</label>
-                        <input type="text" class="form-control" id="inputLocalizacao">
+                        <select class="form-select form-select-lg mb-3" id="inputLocalizacao">
+                            <!--Opcoes estão a ser adicionadas dinamicamente no inicio.js na função getNomeLivrosParaModal-->
+                        </select>
+                        <!--<input type="text" class="form-control" id="inputLocalizacao" required>-->
                     </div>
                     <div class="mb-3">
                         <label for="opcoesLivros" class="form-label">Selecione um livro</label>

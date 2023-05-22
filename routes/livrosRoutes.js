@@ -22,7 +22,7 @@ router.post('', async function (req, res, next) {
 });
 
 // Get information about the authenticated user (only the name)
-router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
+router.get('/auth',  async function (req, res, next) {
     try {
         //console.log("Get authenticated user");
         let livro = new Livro();

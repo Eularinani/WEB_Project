@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="./stylesheets/perfil.css">
+    <link rel="stylesheet" href="stylesheets/common.css">
+    <link rel="stylesheet" href="stylesheets/card-livros.css">
+    <script src="./javascripts/utils/verifications.js"></script>
+    <script src="./javascripts/requests/usersRequests.js"></script>
+    <script src="./javascripts/shared.js"></script>
+    <script src="./javascripts/profile.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href="/Home.html"><img id="logo2" src="./Images/Logos-09.png" alt="Buy and change"></a>  
+          </div>
+          <nav class="nav-menu">
+              <a href="/inicio.html"> Inicio</a>
+              <a href="/profile.html">Perfil </a>
+              <a href="/Home.html">Mensagens </a>
+              <a href="/index.html" id="login-option">Login</a>
+              <a onclick="logout()" id="logout-option">Logout</a>
+          </nav>
+    </div>
+</header>
+<main>
+  <section>
+        <div>
+            <img class="profile-banner" src="./Images/banner_profile.jpg" alt="Imagem de perfil">
+        </div>
+      <div class="container">
+      <div class="profile-avatar-container">
+          <img class="profile-image" src="./Images/avatar.png" alt="Imagem de perfil">
+      </div>
+          <p class="profile-name" id="profile-name"></p><!-- o nome do utilizador é adicionado no ficheiro profile.js na fnção buildResults-->
+      </div>
+
+  </section>
+    <section class="container">
+        <div class="profile-container-livros">
+            <h1>Os meus livros</h1>
+            <div id="livros">
+                <!--todos os livros são adicionados no profile.js na função buildBooks -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        Informação sobre o site pode ser adicionada aqui.
+    </div>
+</footer>
+
+</body>
+</html>

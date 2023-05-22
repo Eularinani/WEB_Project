@@ -1,6 +1,5 @@
 window.onload = async function () {
     try{
-        
         //esse codigo traz as coisa atraves da funçao crida 
         let res = await getAllbooks();
         console.log(res);
