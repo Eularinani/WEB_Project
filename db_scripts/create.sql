@@ -44,7 +44,7 @@ create table Oferta (
 
 create table Locais (
     Local_id SERIAL not null,
-    Local_raio float not null,
+    Local_raio float,
     Local_endereco VARCHAR(20),
     primary key (Local_id)
 );

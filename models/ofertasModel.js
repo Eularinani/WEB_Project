@@ -29,7 +29,7 @@ class Trans{
 }}
 
 class Ofert{
-        constructor(id,titulo,dia,contra_p,user,livro, imagem, nome_oferta){
+        constructor(id,titulo,dia,contr,user,livro, imagem, nome_oferta){
             this.id=id
             this.titulo=titulo
             this.dia=dia
@@ -42,8 +42,6 @@ class Ofert{
     //add ofertas
     static async addofert(ofertaDados){
             try {
-                console.log("ola 1111");
-                console.log(ofertaDados);
                 const dbResult = await pool.query(`Insert into oferta (Oferta_nome, Oferta_foto,Oferta_livro_id,Oferta_user_id, Oferta_Dia)
                         values ($1,$2,$3,$4,$5)`, [ofertaDados.nome, ofertaDados.foto, ofertaDados.livro_id, ofertaDados.user_id, ofertaDados.dia]);
 
