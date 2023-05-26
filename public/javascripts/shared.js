@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const logout = document.getElementById("logout-option");
 
     if (user && user.id) {
-        login.classList.add("d-none");
-        logout.classList.remove("d-none");
+        login && login.classList.add("d-none");
+        logout && logout.classList.remove("d-none");
     } else {
-        login.classList.remove("d-none");
-        logout.classList.add("d-none");
+        login && login.classList.remove("d-none");
+        logout && logout.classList.add("d-none");
     }
 });

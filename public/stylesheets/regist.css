@@ -60,7 +60,9 @@ button.game {
   }
   
   .container-registro {
-    background-color: #C44E8A;
+   /* background: #EDA942;*/
+    background-color: 
+    #B96A20;
     padding: 6px;
     width: 350px;
     height: 450px;
@@ -116,7 +118,7 @@ button.game {
   }
   
   button[type="submit"] {
-    background: #15B0AB;
+    background: #FCA540;
     color: #111111;
     border-radius: 30px;
     width: 100%;

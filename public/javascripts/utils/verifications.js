@@ -15,10 +15,8 @@ async function getUserAndOffer() {
             resultOferta = await requestOferta(user.id);
         }
         else {
-            return {successful: false};
-        }
-        if (!user)
             changePage("index.html","Not authenticated. Going to login page");
+        }
         return {successful: true, resultOferta};
     } catch (err) {
         console.log(err);

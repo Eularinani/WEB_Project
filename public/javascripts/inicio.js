@@ -125,6 +125,11 @@ function eventosModalDetalhesOferta(idForButton) {
             document.getElementById('diaOferta').textContent = new Date(result.dia).toISOString().slice(0, 10);
             document.getElementById('tipoOferta').textContent = result.nome;
             document.getElementById('nomeComprador').textContent = result.nome_utilizador;
+
+            document.getElementById('imagemOferta').src = result.oferta_foto;
+            document.getElementById('imagemOferta').onerror = function() {
+                document.getElementById('imagemOferta').src = './Images/Image_not_available.png';
+            };
             myModal.show();
         } catch (err) {
             // Treat 500 errors here
@@ -191,6 +196,7 @@ function submitFormlarioOfertaModal() {
         console.log("formulario");
         e.preventDefault();
 
+        const imagem = document.getElementById("inputURL").value;
         const localizacao = document.getElementById("inputLocalizacao").value;
         const tipoOperacao = document.getElementById("inputOperacao").value;
         const livro = document.getElementById("opcoesLivros").value;
@@ -198,14 +204,14 @@ function submitFormlarioOfertaModal() {
         const dataAtual = new Date().toISOString();
         const user = JSON.parse(sessionStorage.getItem("user"));
 
-        console.log(localizacao, tipoOperacao, livro, dataAtual, user.id)
-        sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user.id);
+        console.log(localizacao, tipoOperacao, livro, dataAtual, user.id, imagem)
+        sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user.id, imagem);
 
         // aqui tem de ser chamada a rota com o POST para quardar os dados que já estão acima, que vêm do formulário
     })
 }
 
-async function sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user) {
+async function sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user, imagem) {
     try {
         const payload = {
             headers: {
@@ -217,7 +223,8 @@ async function sendFormulario(localizacao, tipoOperacao, livro, dataAtual, user)
                 Oferta_nome: tipoOperacao,
                 Oferta_Dia: dataAtual,
                 Oferta_user_id: user,
-                Oferta_livro_id: livro
+                Oferta_livro_id: livro,
+                imagem_livro: imagem
             })
         };
         const response = await fetch(`/api/ofertas/guardar`, payload);

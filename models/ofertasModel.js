@@ -29,7 +29,7 @@ class Trans{
 }}
 
 class Ofert{
-        constructor(id,titulo,dia,contr,user,livro, imagem, nome_oferta){
+        constructor(id,titulo,dia,contra_p,user,livro, imagem, nome_oferta){
             this.id=id
             this.titulo=titulo
             this.dia=dia
@@ -42,8 +42,10 @@ class Ofert{
     //add ofertas
     static async addofert(ofertaDados){
             try {
+                console.log("ola 1111");
+                console.log(ofertaDados);
                 const dbResult = await pool.query(`Insert into oferta (Oferta_nome, Oferta_foto,Oferta_livro_id,Oferta_user_id, Oferta_Dia)
-                        values ($1,$2,$3,$4,$5)`, [ofertaDados.nome, ofertaDados.foto, ofertaDados.livro_id, ofertaDados.user_id, ofertaDados.dia]);
+                        values ($1,$2,$3,$4,$5)`, [ofertaDados.nome, ofertaDados.imagem_livro, ofertaDados.livro_id, ofertaDados.user_id, ofertaDados.dia]);
 
                 return { status: 200, result: {msg:"A sua Oferta foi feita"}} ;
             } catch (err) {
@@ -86,7 +88,7 @@ class Ofert{
     static async getEncomendaOFERTA(ofertaID) {
         try {
             let dbItems = await pool.query(
-                `select  Oferta_nome,Oferta_Dia,Titulo,Livr_capa,usr_name
+                `select  Oferta_nome,Oferta_Dia,Titulo,Livr_capa,usr_name, oferta_foto
                 FROM oferta
                 INNER JOIN livro on oferta.oferta_livro_id=livro.livro_id
                 INNER JOIN appuser on oferta.oferta_user_id=appuser.usr_id
@@ -108,6 +110,7 @@ class Ofert{
             ofertas.titulo = dbItem.titulo;
             ofertas.capa = dbItem.livr_capa;
             ofertas.nome_utilizador = dbItem.usr_name;
+            ofertas.oferta_foto = dbItem.oferta_foto;
             // ofertas.nome_transacao = dbItem.transacao.nome;
 
             console.log("ofertas", ofertas)

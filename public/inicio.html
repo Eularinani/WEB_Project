@@ -90,8 +90,9 @@
             </div>
             <div class="modal-body">
                 <form id="form-oferta">
-                    <div class="btn-fotograria-oferta">
-                        <button type="button">Carregar imagem</button>
+                    <div class="mb-3">
+                        <label for="inputURL" class="form-label">Imagem</label>
+                        <input type="text" class="form-control" id="inputURL" required>
                     </div>
                     <div class="mb-3">
                         <label for="inputOperacao" class="form-label">Tipo operação</label>
@@ -151,8 +152,14 @@
                     <p id="diaOferta"></p>
                 </div>
                 <div>
-                    <p class="labelDetalheOferta">Nome do vendedor:</p>
+                    <p class="labelDetalheOferta">Nome do comprador:</p>
                     <p id="nomeComprador"></p>
+                </div>
+                <div class="container_imagem_oferta">
+                    <p class="labelDetalheOferta">Estado do Livro:</p>
+                    <div class="text-center p-3">
+                        <img id="imagemOferta" src="" alt="">
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

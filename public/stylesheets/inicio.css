@@ -89,3 +89,7 @@
   z-index: 33;
   font-size: 18px !important;
 }
+
+#imagemOferta {
+  height: 250px;
+}

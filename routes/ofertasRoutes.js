@@ -11,6 +11,7 @@ router.post('/guardar', async function (req, res, next) {
         ofertaData.dia = req.body.Oferta_Dia;
         ofertaData.user_id = req.body.Oferta_user_id;
         ofertaData.livro_id = req.body.Oferta_livro_id;
+        ofertaData.imagem_livro = req.body.imagem_livro;
         let result = await oferta.addofert(ofertaData);
         res.status(result.status).send(result.result);
     } catch (err) {
